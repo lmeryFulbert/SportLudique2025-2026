@@ -1,5 +1,5 @@
-site_name: SportLudique Project 2024-2025
-site_url: https://lmeryfulbert.github.io/SportLudique2024-2025/
+site_name: SportLudique Project 2025-2026
+site_url: https://lmeryfulbert.github.io/SportLudique2025-2026/
 theme:
   name: material
   palette:
@@ -19,7 +19,7 @@ theme:
      - content.code.copy
   #  - navigation.tabs
   #  - navigation.top
-copyright: Copyright &copy; 2024-2025 MERY Ludovic - Lycée Fulbert - Chartres
+copyright: Copyright &copy; 2025-2026 MERY Ludovic & Kevin Huet - Lycée Fulbert - Chartres
 
 markdown_extensions:
   - attr_list
