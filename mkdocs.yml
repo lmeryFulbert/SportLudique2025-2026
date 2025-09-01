@@ -1,1 +1,76 @@
-site_name: My Docs
+site_name: SportLudique Project 2024-2025
+site_url: https://lmeryfulbert.github.io/SportLudique2024-2025/
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: 'indigo'
+      accent: 'indigo'
+      toggle:
+        icon: 'material/brightness-4'
+        name: 'Switch to light mode'
+    - scheme: default
+      primary: 'indigo'
+      accent: 'indigo'
+      toggle:
+        icon: 'material/brightness-7'
+        name: 'Switch to dark mode'
+  features:
+     - content.code.copy
+  #  - navigation.tabs
+  #  - navigation.top
+copyright: Copyright &copy; 2024-2025 MERY Ludovic - Lycée Fulbert - Chartres
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.tabbed:
+      alternate_style: true
+
+#plugins:
+#  - with-pdf:
+#      author: MERY Ludovic
+#      copyright: ludovic.mery@lyceefulbert.fr
+      #
+      #cover: false
+      #back_cover: true
+      #cover_title: Projects SISR
+      #cover_subtitle: SUBTITLE TEXT
+      #custom_template_path: TEMPLATES PATH
+      #
+      #toc_title: Sommaire
+      #heading_shift: true
+      #toc_level: 3
+      #ordered_chapter_level: 2
+      #excludes_children:
+      #    - 'release-notes/:upgrading'
+      #    - 'release-notes/:changelog'
+      #
+      #exclude_pages:
+      #    - 'bugs/'
+      #    - 'appendix/contribute/'
+      #convert_iframe:
+      #    - src: IFRAME SRC
+      #      img: POSTER IMAGE URL
+      #      text: ALTERNATE TEXT
+      #    - src: ...
+      #two_columns_level: 3
+      #
+      #render_js: true
+      #headless_chrome_path: headless-chromium
+      #
+      #output_path: any-place/document.pdf
+      #enabled_if_env: ENABLE_PDF_EXPORT
+      #
+      #debug_html: true
+      #show_anchors: true
+      #verbose: true
