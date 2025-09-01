@@ -1,3 +1,8 @@
+---
+toc:
+  depth: 0
+---
+
 # 01-Utilisation de git et de mkdocs
 
 ## Prérequis
@@ -6,7 +11,7 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 - Python et pip (`sudo apt-get install python3-pip`)
 - MkDocs (`pip install mkdocs`)
 
-## Configurer Python (environnement virtuel) pour des tests locaux
+## 1. Configurer Python (environnement virtuel) pour des tests locaux
 
 ### Environnement virtuel
 
@@ -43,7 +48,7 @@ Si tout est correct, ````which mkdocs```` devrait renvoyer ````/usr/local/bin/mk
 Vous pourrez tester localement mkdocs.
 
 
-## 1. Création d'un dépôt GitHub public
+## 2. Création d'un dépôt GitHub public
 
 1. Rendez-vous sur [GitHub](https://github.com) et connectez-vous à votre compte.
 2. Cliquez sur le bouton **New repository**.
@@ -69,7 +74,7 @@ Vous pourrez tester localement mkdocs.
     cd mon-projet-mkdocs
     ```
 
-## 2.bis Configuration du compte GitHub pour le dépôt local
+## 3. Configuration du compte GitHub pour le dépôt local
 
 Avant de commencer à travailler avec Git et GitHub sur votre dépôt local, vous devez configurer votre compte GitHub pour que vos commits soient associés à votre profil.
 
@@ -106,31 +111,30 @@ Pour faciliter l'authentification et éviter de saisir vos identifiants à chaqu
 
 1. **Générer une clé SSH** :
 
-    ??? Warning "Attention"
-        ED25519 est une clé basée sur les courbes elliptiques (ECC). 
-        Elle utilise la courbe elliptique Curve25519, optimisée pour la sécurité et la rapidité. C’est une alternative moderne à **RSA ou DSA**, offrant la même sécurité avec des clés beaucoup plus courtes.
-        Avantages :<br/>
-        Plus rapide pour la génération de clés, la signature et la vérification.
-        Taille des clés et des signatures plus petites (32 bytes pour la clé publique).<br/>
-        Très résistante aux attaques connues contre RSA/DSA avec clés plus courtes.
-        En résumé : ED25519 = ECC moderne, plus sûr et plus efficace que RSA classique.
+=== "RSA"
 
-=== "mkdocs"
+    ```bash
+    ssh-keygen -t rsa -b 4096 -C "votre-email@example.com"
+    ```  
+
+=== "Courbe Eliptique"
 
     ```bash
     ssh-keygen -t ed25519 -C "votre-email@example.com"
     ```
 
-=== "Docusaurus "
+    ??? Warning "Information"
+        **ED25519** est une clé basée sur les courbes elliptiques (ECC). 
+        Elle utilise la courbe elliptique Curve25519, optimisée pour la sécurité et la rapidité. C’est une alternative moderne à **RSA ou DSA**, offrant la même sécurité avec des clés beaucoup plus courtes.
+        Avantages :<br/>
+        Plus rapide pour la génération de clés, la signature et la vérification.
+        Taille des clés et des signatures plus petites (32 bytes pour la clé publique).<br/>
+        Très résistante aux attaques connues contre RSA/DSA avec clés plus courtes.
 
-    ```bash
-    ssh-keygen -t rsa -b 4096 -C "votre-email@example.com"
-    ```
 
+Appuyez sur `Entrée` pour accepter l'emplacement par défaut du fichier. Vous pouvez aussi définir une phrase de passe pour sécuriser votre clé.
 
-    Appuyez sur `Entrée` pour accepter l'emplacement par défaut du fichier. Vous pouvez aussi définir une phrase de passe pour sécuriser votre clé.
-
-    ??? Warning "Attention"
+??? important "Attention"
     **Attention** ne perdez pas le mot de passe associé à votré clé privée.
 
 2. **Ajouter la clé SSH à votre compte GitHub** :
@@ -152,7 +156,7 @@ Pour faciliter l'authentification et éviter de saisir vos identifiants à chaqu
 
 ---
 
-## 3. Initialisation de MkDocs
+## 4. Initialisation de MkDocs
 
 1. Dans votre terminal, assurez-vous d'être dans le répertoire de votre projet :
 
@@ -168,7 +172,7 @@ Pour faciliter l'authentification et éviter de saisir vos identifiants à chaqu
 
 3. Cette commande crée un répertoire `docs/` et un fichier `mkdocs.yml`.
 
-## 4. Arborescence de fichiers attendue pour un projet MkDocs
+## 5. Arborescence de fichiers attendue pour un projet MkDocs
 
 Une structure de fichiers de base pour un projet MkDocs devrait ressembler à ceci :
 
@@ -191,7 +195,7 @@ Une structure de fichiers de base pour un projet MkDocs devrait ressembler à ce
 -    **mkdocs.yml** : Fichier de configuration pour MkDocs.
 -    **README.md** : Fichier de présentation du projet.
 
-## 5. Faire un commit local
+## 6. Faire un commit local
 
 1. Après avoir modifié ou ajouté des fichiers, vérifiez l'état de votre dépôt :
 
@@ -211,7 +215,7 @@ Une structure de fichiers de base pour un projet MkDocs devrait ressembler à ce
     git commit -m "Initialisation du projet avec MkDocs"
     ```
 
-## 6. Envoyer les modifications sur GitHub (Push)
+## 7. Envoyer les modifications sur GitHub (Push)
 
 1. Pour envoyer vos modifications locales vers GitHub, utilisez la commande :
 
@@ -221,7 +225,7 @@ Une structure de fichiers de base pour un projet MkDocs devrait ressembler à ce
 
     **Note** : Si votre branche principale s'appelle `master` au lieu de `main`, adaptez la commande.
 
-## 7. Récupérer les modifications de GitHub (Pull)
+## 8. Récupérer les modifications de GitHub (Pull)
 
 1. Avant de commencer à travailler sur votre projet, récupérez les dernières modifications depuis GitHub pour éviter les conflits :
 
@@ -231,13 +235,13 @@ Une structure de fichiers de base pour un projet MkDocs devrait ressembler à ce
 
 2. Si vous et d'autres collaborateurs avez fait des modifications en même temps, vous devrez peut-être résoudre des conflits. Git vous indiquera les fichiers en conflit et vous guidera pour les résoudre.
 
-## 8. Bonnes pratiques pour éviter les conflits
+## 9. Bonnes pratiques pour éviter les conflits
 
 - Tirez (avec la commande **pull**) toujours les dernières modifications **avant** de commencer à travailler.
 - Commitez et poussez (commande **push**) vos changements régulièrement.
 - Si vous travaillez sur une fonctionnalité ou une grosse modification, envisagez de créer une branche séparée (si vous voulez tester un autre thème par exemple)
 
-## 9. Workflow de travail collaboratif
+## 10. Workflow de travail collaboratif
 
 Afin d’assurer un développement propre et collaboratif, nous suivons un **workflow basé sur les branches et les Pull Requests**.
 
@@ -272,7 +276,7 @@ Afin d’assurer un développement propre et collaboratif, nous suivons un **wor
 
 🔄 Amélioration : l’auteur peut alors mettre à jour sa branche, corriger ses modifications puis soumettre une nouvelle PR.
 
-## 10. Configuration du CI/CD avec GitHub Actions via l'interface GitHub
+## 11. Configuration du CI/CD avec GitHub Actions via l'interface GitHub
 
    - Ouvrez votre dépôt sur GitHub.
    - Cliquez sur l'onglet **Actions** en haut de la page de votre dépôt.
@@ -291,7 +295,7 @@ Afin d’assurer un développement propre et collaboratif, nous suivons un **wor
     ```
    - Cette commande téléchargera les dernières modifications du dépôt distant vers votre dépôt local.
 
-## 10. Activer GitHub Pages avec la branche de déploiement
+## 12. Activer GitHub Pages avec la branche de déploiement
 
 Une fois votre workflow CI/CD configuré pour déployer la documentation, vous pouvez activer GitHub Pages pour héberger votre site de documentation.
 
