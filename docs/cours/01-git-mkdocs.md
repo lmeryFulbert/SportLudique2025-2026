@@ -107,21 +107,21 @@ Pour faciliter l'authentification et éviter de saisir vos identifiants à chaqu
 1. **Générer une clé SSH** :
 
     ??? Warning "Attention"
-    ED25519 est une clé basée sur les courbes elliptiques (ECC). 
-    Elle utilise la courbe elliptique Curve25519, optimisée pour la sécurité et la rapidité. C’est une alternative moderne à **RSA ou DSA**, offrant la même sécurité avec des clés beaucoup plus courtes.
-    Avantages :<br/>
-    Plus rapide pour la génération de clés, la signature et la vérification.
-    Taille des clés et des signatures plus petites (32 bytes pour la clé publique).<br/>
-    Très résistante aux attaques connues contre RSA/DSA avec clés plus courtes.
-    En résumé : ED25519 = ECC moderne, plus sûr et plus efficace que RSA classique.
+        ED25519 est une clé basée sur les courbes elliptiques (ECC). 
+        Elle utilise la courbe elliptique Curve25519, optimisée pour la sécurité et la rapidité. C’est une alternative moderne à **RSA ou DSA**, offrant la même sécurité avec des clés beaucoup plus courtes.
+        Avantages :<br/>
+        Plus rapide pour la génération de clés, la signature et la vérification.
+        Taille des clés et des signatures plus petites (32 bytes pour la clé publique).<br/>
+        Très résistante aux attaques connues contre RSA/DSA avec clés plus courtes.
+        En résumé : ED25519 = ECC moderne, plus sûr et plus efficace que RSA classique.
 
-    === "mkdocs"
+=== "mkdocs"
 
     ```bash
     ssh-keygen -t ed25519 -C "votre-email@example.com"
     ```
 
-    === "Docusaurus "
+=== "Docusaurus "
 
     ```bash
     ssh-keygen -t rsa -b 4096 -C "votre-email@example.com"
