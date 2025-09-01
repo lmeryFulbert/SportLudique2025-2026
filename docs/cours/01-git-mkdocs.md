@@ -69,6 +69,15 @@ Pour faciliter l'authentification et éviter de saisir vos identifiants à chaqu
 
 1. **Générer une clé SSH** :
 
+    ??? Warning "Attention"
+ED25519 est une clé basée sur les courbes elliptiques (ECC). 
+Elle utilise la courbe elliptique Curve25519, optimisée pour la sécurité et la rapidité. C’est une alternative moderne à **RSA ou DSA**, offrant la même sécurité avec des clés beaucoup plus courtes.
+Avantages :<br/>
+Plus rapide pour la génération de clés, la signature et la vérification.
+Taille des clés et des signatures plus petites (32 bytes pour la clé publique).<br/>
+Très résistante aux attaques connues contre RSA/DSA avec clés plus courtes.
+En résumé : ED25519 = ECC moderne, plus sûr et plus efficace que RSA classique.
+
     === "mkdocs"
 
     ```bash
@@ -78,8 +87,9 @@ Pour faciliter l'authentification et éviter de saisir vos identifiants à chaqu
     === "Docusaurus "
 
     ```bash
-    ssh-keygen rsa -C "votre-email@example.com"
+    ssh-keygen -t rsa -b 4096 -C "votre-email@example.com"
     ```
+
 
     Appuyez sur `Entrée` pour accepter l'emplacement par défaut du fichier. Vous pouvez aussi définir une phrase de passe pour sécuriser votre clé.
 
@@ -226,14 +236,6 @@ Afin d’assurer un développement propre et collaboratif, nous suivons un **wor
 🔄 Amélioration : l’auteur peut alors mettre à jour sa branche, corriger ses modifications puis soumettre une nouvelle PR.
 
 ## 10. Configuration du CI/CD avec GitHub Actions via l'interface GitHub
-
- ??? Warning "Définitions"
-    **CI (Continuous Integration – Intégration Continue)**
-L’intégration continue est une pratique qui consiste à fusionner régulièrement le code développé par chaque collaborateur dans la branche principale.
-CD (**Continuous Delivery / Continuous Deployment** – Livraison ou Déploiement Continu)
-**Continuous Delivery** : le code est automatiquement testé et préparé pour être mis en production. Le déploiement nécessite encore une validation manuelle.
-**Continuous Deployment** : étape supplémentaire où chaque changement validé est déployé automatiquement en production sans intervention humaine.
-
 
    - Ouvrez votre dépôt sur GitHub.
    - Cliquez sur l'onglet **Actions** en haut de la page de votre dépôt.
