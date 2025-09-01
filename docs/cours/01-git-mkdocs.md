@@ -12,10 +12,10 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 
 Creation de l'environnement virtuel et activation
 
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
 le prompt doit afficher ````(venv))````
 
@@ -27,16 +27,16 @@ Pensez à réactiver l'environnement virtuel pour pouvoir l'utiliser à nouveau.
 
 Pour installer de manière globale:
 
-    ```bash
-    sudo python3 -m pip install --upgrade pip
-    sudo python3 -m pip install mkdocs mkdocs-material
-    ```
+```bash
+sudo python3 -m pip install --upgrade pip
+sudo python3 -m pip install mkdocs mkdocs-material
+```
 
 Verifier le chemin de l'executable:
 
-    ```bash
-    which mkdocs
-    ```
+```bash
+which mkdocs
+```
 
 Si tout est correct, ````which mkdocs```` devrait renvoyer ````/usr/local/bin/mkdocs````.
 
@@ -107,13 +107,13 @@ Pour faciliter l'authentification et éviter de saisir vos identifiants à chaqu
 1. **Générer une clé SSH** :
 
     ??? Warning "Attention"
-ED25519 est une clé basée sur les courbes elliptiques (ECC). 
-Elle utilise la courbe elliptique Curve25519, optimisée pour la sécurité et la rapidité. C’est une alternative moderne à **RSA ou DSA**, offrant la même sécurité avec des clés beaucoup plus courtes.
-Avantages :<br/>
-Plus rapide pour la génération de clés, la signature et la vérification.
-Taille des clés et des signatures plus petites (32 bytes pour la clé publique).<br/>
-Très résistante aux attaques connues contre RSA/DSA avec clés plus courtes.
-En résumé : ED25519 = ECC moderne, plus sûr et plus efficace que RSA classique.
+    ED25519 est une clé basée sur les courbes elliptiques (ECC). 
+    Elle utilise la courbe elliptique Curve25519, optimisée pour la sécurité et la rapidité. C’est une alternative moderne à **RSA ou DSA**, offrant la même sécurité avec des clés beaucoup plus courtes.
+    Avantages :<br/>
+    Plus rapide pour la génération de clés, la signature et la vérification.
+    Taille des clés et des signatures plus petites (32 bytes pour la clé publique).<br/>
+    Très résistante aux attaques connues contre RSA/DSA avec clés plus courtes.
+    En résumé : ED25519 = ECC moderne, plus sûr et plus efficace que RSA classique.
 
     === "mkdocs"
 
