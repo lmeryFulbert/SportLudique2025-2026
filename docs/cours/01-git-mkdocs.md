@@ -6,6 +6,43 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 - Python et pip (`sudo apt-get install python3-pip`)
 - MkDocs (`pip install mkdocs`)
 
+## Configurer Python (environnement virtuel) pour des tests locaux
+
+### Environnement virtuel
+
+Creation de l'environnement virtuel et activation
+
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
+
+le prompt doit afficher ````(venv))````
+
+Installez les dépendances avec **pip**. Ces dépendances seront installées uniquement dans l'environnement virtuel et pas globalement dans le système.
+
+Pensez à réactiver l'environnement virtuel pour pouvoir l'utiliser à nouveau.
+
+### Installation gloable sur le système
+
+Pour installer de manière globale:
+
+    ```bash
+    sudo python3 -m pip install --upgrade pip
+    sudo python3 -m pip install mkdocs mkdocs-material
+    ```
+
+Verifier le chemin de l'executable:
+
+    ```bash
+    which mkdocs
+    ```
+
+Si tout est correct, ````which mkdocs```` devrait renvoyer ````/usr/local/bin/mkdocs````.
+
+Vous pourrez tester localement mkdocs.
+
+
 ## 1. Création d'un dépôt GitHub public
 
 1. Rendez-vous sur [GitHub](https://github.com) et connectez-vous à votre compte.
