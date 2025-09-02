@@ -8,6 +8,13 @@
 
 ![infra](../medias/infrastructure/management_logique.png)
 
+??? Warning "Nouveauté 2026"
+
+    Un vlan de management dédié est utilisable sur la ferme de serveurs Nutanix: <br/>
+    110 -->Bourges,<br/> 
+    120 --> Chartres, <br/> 
+    etc...
+
 ## Annexe 3 - Schéma physique l’infrastructure
 
 ![infra](../medias/infrastructure/physique_minimum.png)
