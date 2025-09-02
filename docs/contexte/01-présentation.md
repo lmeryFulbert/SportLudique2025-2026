@@ -1,7 +1,8 @@
 # Présentation
 ## BTS SIO option SISR
-## Année scolaire 2024-2025
+## Année scolaire 2025-2026
 **Auteur :** Ludovic MERY
+**Co-Enseignant** : Kevin Huet
 
 ![switch HP](../medias/contexte/image1.png)
 

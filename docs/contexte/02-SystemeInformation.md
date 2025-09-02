@@ -13,6 +13,8 @@ Chaque site bénéficie de son propre département informatique, couvrant un lar
 Les utilisateurs font partie d'un domaine géré localement par délégation du nom de domaine commun **sportludique.fr**. Les postes de travail de l'équipe IT sont sous Linux avec une interface utilisateur (GUI). Ils utilisent diverses applications adaptées à leurs activités, notamment des suites bureautiques telles que LibreOffice, ainsi que des outils graphiques ou des applications internes développées au sein de l'entreprise.
 
 L'administration des machines windows se fera avec un client SSH intégré nativement au système **sans** bureau X11
-L'administration des machines Windows se fera avec un client RDP (Remote Desktop Protocol) déjà intégré aux postes de travail via la commande suivante:
+L'administration des machines Windows se fera avec un client **RDP (Remote Desktop Protocol)** déjà intégré aux postes de travail via la commande suivante:
 
 ``` xfreerdp /u:user@domain.tld /v:fqdn-server-or-IP /sec:nla```
+
+Le plussimple sera d'utiliser le logiciel **Remina** un logiciel de bureau à distance et un client SSH sous linux sans oublier le plugin pour prendre en charge le protocole RDP.
