@@ -61,11 +61,11 @@ Vous pourrez tester localement mkdocs.
 
 1. Ouvrez un terminal.
 2. Naviguez vers le répertoire où vous souhaitez cloner votre dépôt (ex: `cd ~/MesDocumentations`).
-3. Copiez l'URL de votre dépôt depuis GitHub (bouton vert "Code" > HTTPS).
+3. Copiez l'URL de votre dépôt depuis GitHub (bouton vert "Code" > SSH).
 4. Tapez la commande suivante pour cloner le dépôt sur votre machine :
 
     ```bash
-    git clone https://github.com/votre-nom-utilisateur/mon-projet-mkdocs.git
+    git clone git@github.com:votre-nom-utilisateur/mon-projet-mkdocs.git
     ```
 
 5. Naviguez dans le répertoire cloné :
