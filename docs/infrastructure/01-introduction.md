@@ -56,7 +56,7 @@ l’administration du réseau.
 ````
 
 ??? important "Remarque"
-    **<codeservice>** correspond au protocole ou à la convention associé.
+    **codeservice** correspond au protocole ou à la convention associé.
     Exemple: <br/>
     www   -->  pour un serveur http/https <br/>
     ns --> pour un serveur DNS <br/>
@@ -70,20 +70,18 @@ Exemple d’approche déjà utilisée au sein de la section SIO du lycée Fulber
 lan.sio.lyceefulbert.fr
 ````
 
-Si vous adoptez  un schéma du type ````lan.<ville>.sportludique.fr```` les machines risquent d’être confondues avec les domaines Active Directory utilisés pour l’authentification.
-
 ## Bonnes pratiques DNS et recommandations
 
-Sur le sujet des domaines internes Active Directory, l’ancienne pratique courante consistait à utiliser un TLD inventé (ex. : ville.local ou entreprise.local).
+Pour les **domaines internes Active Directory**, l’ancienne pratique courante consistait à utiliser un TLD (Top Level Domain) inventé (ex. : ville.local ou entreprise.local). --> TLD inventé: local
 
-!!!! warning "Attention"
-     Ce n’est plus recommandé car .local est réservé par RFC 6762 pour mDNS (Multicast DNS), ce qui entraîne des conflits avec macOS, Linux et certains services modernes.
+!!! Danger "Attention"
+
+    Ce n’est plus recommandé car **.local** est réservé par RFC 6762 pour mDNS (Multicast DNS), ce qui entraîne des conflits avec macOS, Linux et certains services modernes.
 
 Aujourd’hui, les bonnes pratiques Microsoft et celles de l’IETF recommandent :
 
--  d’utiliser un sous-domaine du domaine public existant (ex. : ad.ville.sportludique.fr ou corp.ville.sportludique.fr),
-
--  ou d’utiliser un préfixe réservé à l’interne clairement distinct de la zone publique (int.ville.sportludique.fr, ad.ville.sportludique.fr, lan.ville.sportludique.fr).
+- Utiliser un préfixe réservé à l’interne (ex. : intranet.ville.sportludique.fr, lan.ville.sportludique.fr etc...) : ce sous-domaine n’existe que dans le DNS interne et est inaccessible depuis Internet.
+Pensez au domaine public comme à une vitrine visible par tout le monde, et au domaine interne comme à une pièce fermée derrière cette vitrine. Tout ce qui se trouve dans la pièce interne reste privé et sécurisé, même si le nom est similaire à celui de la vitrine.
 
 Microsoft précise bien que le FQDN interne doit être routable et enregistré dans un domaine possédé par l’entreprise afin d’éviter les problèmes de certificats, d’authentification Kerberos et d’intégration avec Azure/Office365.
 
@@ -92,26 +90,32 @@ Microsoft précise bien que le FQDN interne doit être routable et enregistré d
 L’infrastructure DNS de SportLudique est organisée de manière hiérarchique :  
 - La zone principale `sportludique.fr` est gérée par votre enseignant.  
 - Chaque ville dispose d’une **sous-zone déléguée** :  
-  - `bourges.sportludique.fr`  
-  - `chartres.sportludique.fr`  
-  - `orleans.sportludique.fr`  
-  - `tours.sportludique.fr`  
+````bash
+  - bourges.sportludique.fr  
+  - chartres.sportludique.fr  
+  - orleans.sportludique.fr  
+  - tours.sportludique.fr  
+````
 
 À l’intérieur de chaque sous-zone, les étudiants doivent créer leur domaine Active Directory.  
 
-!!!! warning "Attention"
-    Problème : le nom du domaine AD détermine automatiquement un **nom NetBIOS** (15 caractères maximum, dérivé du premier label).  
+!!! Danger "Attention"
+
+    Problème : le nom du domaine AD détermine automatiquement un **nom NetBIOS** (15 caractères maximum, dérivé du label le plus à gauche).  
     Si tout le monde crée un domaine du type `lan.<ville>.sportludique.fr`, le NetBIOS sera toujours `LAN`, entraînant des confusions lors des ouvertures de session (`LAN\user`).
 
 Pour éviter cela, nous imposons un schéma de nommage qui intègre un **préfixe unique par ville** directement dans le nom DNS du domaine.  
 Ainsi, le nom NetBIOS reflète aussi la ville concernée, ce qui permet une identification rapide et sans ambiguïté.
 
-### Proposition de nommage
+### Noms de zones DNS à utiliser pour la promotion des contrôleurs de domaine
 
-- Chartres : `cha.chartres.sportludique.fr` → NetBIOS = `CHA`  
-- Orléans : `orl.orleans.sportludique.fr` → NetBIOS = `ORL`  
-- Tours : `trs.tours.sportludique.fr` → NetBIOS = `TRS`  
-- Bourges : `brg.bourges.sportludique.fr` → NetBIOS = `BRG` 
+| Ville    | Nom de zone DNS interne      | NetBIOS |
+| -------- | ---------------------------- | ------- |
+| Chartres | cha.chartres.sportludique.fr | CHA     |
+| Orléans  | orl.orleans.sportludique.fr  | ORL     |
+| Tours    | trs.tours.sportludique.fr    | TRS     |
+| Bourges  | brg.bourges.sportludique.fr  | BRG     |
+
 
 ````bash
 

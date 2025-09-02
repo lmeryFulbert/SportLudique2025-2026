@@ -112,7 +112,7 @@ Les tableaux en annexe à compléter contiennent le plan d’adressage IP de
 l’ensemble du réseau. 
 Ce plan d’adressage tient compte d’une exploitation des adresses IP en mode dynamique par 2 serveurs DHCP.
 
-La maintenance de ce plan d'adressage devra obligatoirement s'effectuer via la solution **phpipam** mis en place par votre enseignant (https://ipam.sio.lyceefulbert.fr).
+La maintenance de ce plan d'adressage devra obligatoirement s'effectuer via la solution **phpipam** mis en place par votre enseignant ([https://ipam.sio.lyceefulbert.fr](https://ipam.sio.lyceefulbert.fr))
 
 Un bloc d’adresse est réservé pour les équipements en adressage fixe et
 ceci pour chaque sous réseaux. Des règles d’ingénierie ont été définies
@@ -192,8 +192,8 @@ SFR qui délivrent un contrat de service Pro Fibre 100Mb/s avec une SLA
 GTR 4heures pour l’abonnement principal Fibre et un contrat bas débit
 ASDL GTR 48Heures pour l’abonnement de secours.
 
-**Attention**
-Les Adresses IP suivantes correspondent aux passerelles (Gateway) fournies par les opérateurs. **C'est à vous de trouver l'IP publiques correspondante à définir sur votre équipement (Voir schema réseau sur la page Annexes)**
+!!!! warning "Attention"
+    Les Adresses IP suivantes correspondent aux passerelles (Gateway) fournies par les opérateurs. **C'est à vous de trouver l'IP publique correspondante à définir sur votre équipement (Voir schema réseau sur la page Annexes)**
 
 
 |             |    **idVLAN**       | **Chartres**      | **Tours**        | **Orléans**      | **Bourges**  |
