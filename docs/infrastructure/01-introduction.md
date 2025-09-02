@@ -2,13 +2,13 @@
 
 ## <span style="color:red;">Dossier technique de l’infrastructure du réseau *SportLudique*</span>
 
-## Lycée Fulbert Chartres 2023-2024
+## Lycée Fulbert Chartres 2025-2026
 
 **Auteur :** Ludovic MERY
 
 ## Introduction :
 
-Les Projets Personnels Encadrés (PPE) seront développés autour du
+Les Actions Professionnelles (AP) seront développées autour du
 contexte *SportLudique*. Cet environnement permettra à l’étudiant de
 réaliser un ensemble de projets autour de différentes situations
 professionnelles (les missions) et acquérir ainsi les compétences en
