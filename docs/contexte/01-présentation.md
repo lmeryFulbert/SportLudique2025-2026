@@ -10,7 +10,7 @@
 
 ##  Activité
 
-SportLudique SARL est une société implanté en région centre spécialisée
+SportLudique SARL est une sociétée implanté en région centre spécialisée
 dans la conception et la fabrication d’articles de sports et de loisirs
 composée de 452 personnes réparties autour de trois sites géographiques
 : Chartres, Tours, Orléans.

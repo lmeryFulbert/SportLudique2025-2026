@@ -27,7 +27,7 @@ Il existe de nombreux outils dédiés à la documentation:
 
 # Outils de documentation
 
-L'ensemble du projet que vous aller préparer cette année devra etre documenté avec l'un de ces outils et être hebergé via github pages afin que l'accès soit toujhours possible même après l'obtention de votre dépot. Vous veuillerez à transmetrte à vos enseignants l'URL de la documentation afin qu'elle puisse être lue nottament pour les épreuves de fin d'année.
+L'ensemble du projet que vous allez préparer cette année devra etre documenté avec l'un de ces outils et être hebergé via github pages afin que l'accès soit toujhours possible même après l'obtention de votre dépot. Vous veuillerez à transmetrte à vos enseignants l'URL de la documentation afin qu'elle puisse être lue nottament pour les épreuves de fin d'année.
 
 L'ancêtre de ces outils est le format **DocBook** (en XML), suivi d'**Asciidoc**, avant la création du langage **Markdown** (MD).
 

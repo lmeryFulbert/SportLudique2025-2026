@@ -17,4 +17,4 @@ L'administration des machines Windows se fera avec un client **RDP (Remote Deskt
 
 ``` xfreerdp /u:user@domain.tld /v:fqdn-server-or-IP /sec:nla```
 
-Le plussimple sera d'utiliser le logiciel **Remina** un logiciel de bureau à distance et un client SSH sous linux sans oublier le plugin pour prendre en charge le protocole RDP.
+Le plus simple sera d'utiliser le logiciel **Remina** un logiciel de bureau à distance et un client SSH sous linux sans oublier le plugin pour prendre en charge le protocole RDP.
