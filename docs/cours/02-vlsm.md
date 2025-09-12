@@ -9,7 +9,7 @@ Le **VLSM (Variable Length Subnet Mask)** est une technique d'adressage IP qui p
 -    Flexibilité : Permet de créer des sous-réseaux de différentes tailles à partir du même espace d'adressage.
 -    Scalabilité : Facilite l'extension du réseau en créant de nouveaux sous-réseaux selon les besoins.
 
-??? info "Attention"
+!!! danger "Attention"
     **VLSM** est une technique d'optimisation pour l'adressage utile dans des plages d'adresse publiques. Dans un contexte d'adresse privées (**RFC1918**), cela a nettement moins d'interet.
 
 ??? info "RFC 1918"
@@ -26,6 +26,42 @@ Le **VLSM (Variable Length Subnet Mask)** est une technique d'adressage IP qui p
 -    Commencez par le plus grand sous-réseau (Il est très important de trier avant de commencer a travailler).
 -    Choisissez un masque de sous-réseau qui satisfait le nombre d'hôtes requis.
 -    Continuez à subdiviser les sous-réseaux restants pour répondre aux autres besoins en utilisant des masques de sous-réseau appropriés.
+
+## Algorithme pour réussir un adressage VLSM 
+
+??? info "Attention"
+    Il est important de trier les réseaux du plus grand au plus petit !
+
+1. **Lister les sous-réseaux**  
+   Identifier tous les sous-réseaux nécessaires avec le nombre d’hôtes requis pour chacun.
+
+2. **Trier les sous-réseaux par nombre d’hôtes décroissant**  
+   - Traiter d’abord le plus grand sous-réseau (celui avec le plus d’hôtes).  
+   - Cela permet d’allouer correctement les plages d’adresses sans conflit.
+
+3. **Attribuer un masque à chaque sous-réseau**  
+   - Pour chaque sous-réseau, calculer le nombre de bits nécessaires pour les hôtes :  
+     ```
+     bits_hotes = plus petit entier n tel que 2^n - 2 >= nombre d’hôtes requis
+
+     le -2 = @ réseau et @ Diffusion
+     ```  
+   - Le masque de sous-réseau correspond à :  
+     ```
+     / (32 - bits_hotes)
+     ```
+
+4. **Allouer les adresses**  
+   - Commencer à partir de l’adresse réseau initiale.  
+   - Pour chaque sous-réseau, définir :  
+     - l’adresse réseau,  
+     - la plage d’adresses utilisables,  
+     - l’adresse de broadcast.  
+
+5. **Recommancer**
+   - Passer à l’adresse immédiatement après la plage allouée pour le sous-réseau suivant.  
+   - Continuer jusqu’à ce que tous les sous-réseaux soient alloués.
+
 
 ### Exemple de mise en oeuvre
 
@@ -52,6 +88,14 @@ Supposons que vous avez une adresse réseau 192.168.1.0/24 et que vous devez cr�
 -    Sous-réseau : 192.168.1.96/28
 -    Plage d'adresses : 192.168.1.97 à 192.168.1.110
 
+## Remettre son travail dans un tableau
+
+| Sous-réseau | Nombre d’hôtes | Bits hôtes | Masque | Adresse réseau     | Plage d’adresses       | Adresse broadcast |
+|------------|----------------|-----------|--------|------------------|----------------------|-----------------|
+| A          | 50             | 6         | /26    | 192.168.1.0      | 192.168.1.1 - 192.168.1.62  | 192.168.1.63   |
+| B          | 25             | 5         | /27    | 192.168.1.64     | 192.168.1.65 - 192.168.1.94 | 192.168.1.95   |
+| C          | 10             | 4         | /28    | 192.168.1.96     | 192.168.1.97 - 192.168.1.110| 192.168.1.111  |
+
 ## Conclusion
 
-Le VLSM est une technique puissante qui permet une gestion plus granulaire et efficace de l'espace d'adressage IP en créant des sous-réseaux de différentes tailles selon les besoins spécifiques. Cela permet d'optimiser l'utilisation des adresses IP, surtout dans les grands réseaux.
+La moindre erreur de calcul entrainera une erreur complète de l'espace d'adressage ! Soyez vigilent !
