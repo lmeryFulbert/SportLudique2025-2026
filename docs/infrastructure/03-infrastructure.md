@@ -34,11 +34,11 @@ Puis, **à chaque fin de séance** vous vérifierez que le poste est brassé sur
 
 ## Gestion des serveurs
 
-L'ensemble des serveurs nécessaires à vos infrastructure devra ^tre géré via la solution d'hyperconvergence **Nutanix** mis à disposition par vos enseignants.
+L'ensemble des serveurs nécessaires à vos infrastructure devront être gérés via la solution d'hyperconvergence **Nutanix** mis à disposition par vos enseignants, ainsi que sur un hyperviseur que vous devrez vous même choisir et mettre en place sur un serveur dédié à votre site.
 Chaque machine virtuelle devra posséder un nom logique permettant de l'identifier sans ambiguité.
-Ayant accès à l'ensemble des VM (y compris celle de l'infrastructure du BTS) merci de réspecter la convention de nom suivante **sous peine de suppression** pure est simple de celle ci:
+La solution Nutanix hébergeant les VM de l'ensemble des sites (ainsi que celles de l'infrastructure du BTS), merci de réspecter la convention de nom suivante **sous peine de suppression** pure est simple de celle ci:
 
-### Préfixe à utiliser dans les noms des VM sur la ferme
+### Préfixe à utiliser dans les noms des VM sur la solution Nutanix
 
 |    **Ville**    |  **Prefixe** |
 |-----------------|-----|
@@ -47,9 +47,16 @@ Ayant accès à l'ensemble des VM (y compris celle de l'infrastructure du BTS) m
 | Orléans         | ORL |
 | Bourges     | BRG |
 
-### Configuration materielle géré par l'hyperviseur
+### Gestion de la configuration materielle dans les hyperviseurs
 
 Les capacités physiques des serveurs qui hébergent vos machines virtuelles ne sont pas infinies. Par conséquent, il est crucial de procéder à un dimensionnement optimal lors de la création de vos machines virtuelles. Par exemple, il est recommandé d'éviter d'allouer 16 Go de RAM à une machine virtuelle Windows. En ce qui concerne l'espace disque, une capacité de 500 Go est généralement suffisante pour la plupart des cas d'utilisation, à moins que les machines ne nécessitent de fortes activités d'écriture sur le disque, telles que les systèmes SIEM, les serveurs de journaux centralisés, les bastions, et ainsi de suite.
+
+### Gestion de votre hyperviseur
+
+Chaque site disposera de son propre hyperviseur pour héberger les serveurs secondaires ou non critiques. Chaque groupe devra choisir entre les solutions VMWare ESXi et Proxmox.
+
+Le matériel mis à la disposition de chaque site se compose d'un switch et d'un serveur physique qui hébergera l'hyperviseur. Le switch de votre site servira à interconnecter votre hyperviseur à vos réseaux à travers le switch de collecte géré par vos enseignant.
+Il appartient à chaque groupe de configurer intégralement son serveur et son switch.
 
 ### Login et password non sécurisé à posséder
 
