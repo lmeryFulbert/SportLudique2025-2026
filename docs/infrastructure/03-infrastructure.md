@@ -58,6 +58,9 @@ Chaque site disposera de son propre hyperviseur pour héberger les serveurs seco
 Le matériel mis à la disposition de chaque site se compose d'un switch et d'un serveur physique qui hébergera l'hyperviseur. Le switch de votre site servira à interconnecter votre hyperviseur à vos réseaux à travers le switch de collecte géré par vos enseignant.
 Il appartient à chaque groupe de configurer intégralement son serveur et son switch.
 
+Pour chaque site, le matériel mis à disposition est organisé comme suit :
+![switch HP](../medias/infrastructure/hyperviseur_etudiant.png)
+
 ### Login et password non sécurisé à posséder
 
 | Microsoft Windows      | administrateur / P@ssw0rd123456!      |
