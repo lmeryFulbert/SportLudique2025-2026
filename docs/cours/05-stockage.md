@@ -26,6 +26,7 @@ La **fiabilité** des support utilisant le SAS est très élevée, expliquant le
 ### NVMe (PCIe)
 La norme NVMe a été conçue pour accéder au stockage directement à travers le bus PCI Express. Cela permet un **temps d'accès beaucoup plus faible** et des **débits beaucoup plus élevés** : le débit maximum peut monter jusqu'à 14 Go/s sur 4 lignes PCIe 5.0 . En contrepartie, ces disque sont **les plus onéreux**.
 Seuls des support de stockages types SSD sont capable d'exploiter cette connectique.
+
 ![connecteur disque NVMe](../medias/cours/stockage/nvme.png)
 
 ## Les différents supports
@@ -48,9 +49,12 @@ Les serveurs d'aujourd'hui sont presque tous équipés de controlleurs RAID mat�
 
 ![controlleur RAID](../medias/cours/stockage/controlleur_raid.png) 
 
-Les disques connectés à un controlleur de stockage de serveur sont échangeables à chaud ("hot swappable"), permettant de les remplacer pendant que le serveur est en fonctionnement. D'autre part, un cache de bonne capacité (parfois plusieurs Go) ainsi qu'une batterie sont généralement présents sur ces controlleurs afin d'assurer la fin correcte des opérations d'écriture sur les disques en cas de rupture d'alimentation, limitant ainsi grandement la corruption des données.
+Les disques connectés à un controlleur de stockage de serveur sont échangeables à chaud ("hot swappable"), permettant de les remplacer pendant que le serveur est en fonctionnement. Ces disques sont accessibles directement sur la façade du serveur pour être retirés rapidement en cas de besoin :
 
 ![baie disque de serveur](../medias/cours/stockage/disques_facade.png)
+
+D'autre part, un cache de bonne capacité (parfois plusieurs Go) ainsi qu'une batterie sont généralement présents sur ces controlleurs afin d'assurer la fin correcte des opérations d'écriture sur les disques en cas de rupture d'alimentation, limitant ainsi grandement la corruption des données.
+
 
 ## Pour résumer
 - Le **SATA** est la solution la **moins cher**, mais **peu performant**.
