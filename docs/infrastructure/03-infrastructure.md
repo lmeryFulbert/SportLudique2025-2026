@@ -59,7 +59,11 @@ Le matériel mis à la disposition de chaque site se compose d'un switch et d'un
 Il appartient à chaque groupe de configurer intégralement son serveur et son switch.
 
 Pour chaque site, le matériel mis à disposition est organisé comme suit :
-![switch HP](../medias/infrastructure/hyperviseur_etudiant.png)
+![materiel etudiant](../medias/infrastructure/hyperviseur_etudiant.png)
+
+Le matériel de tous les sites étant hébergé dans la même baie informatique, l'accès au matériel sera régulé pour des questions pratiques.
+Comme dans un datacenter, chaque groupe devra faire une demande au moins une heure avant à un enseignant pour obtenir un créneau de 2h afin d'accéder physiquement à son matériel. L'accès ne sera accordé qu'à un groupe à la fois, et chaque groupe ne pourra faire qu'une demande par journée. Un registre sera tenu à jour à des fins de traçabilité.
+
 
 ### Login et password non sécurisé à posséder
 
