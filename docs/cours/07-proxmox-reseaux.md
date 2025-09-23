@@ -19,7 +19,8 @@ Exemple de connexion directe de VMs au réseau de l'hyperviseur :
 ![Connexion directe](../medias/cours/proxmox/reseau-bridge.png)
 
 Exemple de connexion de VMs un VLAN avec interconnexion de l'hyperviseur en mode trunk :
-![Connexion VLAN](../medias/cours/stockage/reseau-vlan.png)
+![Connexion VLAN](../medias/cours/proxmox/reseau-vlan.png)
 
 Exemple de connexion directe de VMs avec interconnexion de l'hyperviseur en LACP 
-![connexion LACP](../medias/cours/stockage/reseau-lacp.png)
+![connexion LACP](../medias/cours/proxmox/reseau-lacp.png)
+
