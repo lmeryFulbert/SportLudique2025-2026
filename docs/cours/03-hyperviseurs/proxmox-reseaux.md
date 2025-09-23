@@ -1,4 +1,4 @@
-# 07-Gestion des réseaux sous Promox
+# Gestion des réseaux sous Promox
 
 ## Réseaux et virtualisation
 
@@ -18,12 +18,12 @@ Pour gérer les différents éléments réseaux de Proxmox, il suffit de cliquer
 Dans proxmox, il est possible de combiner ces différents éléments en les cascadant pour parvenir la solution recherchée. Ainsi, connecter un "Linux VLAN" sur un "Linux Bridge" permettra de connecter des machines virtuelles directement dans le VLAN voulu en access, en affectant l'une de ses carte réseau au "Linux VLAN" créé.
 
 Exemple de connexion directe de VMs au réseau de l'hyperviseur :
-![Connexion directe](../medias/cours/proxmox/reseau-bridge.png)
+![Connexion directe](../../medias/cours/proxmox/reseau-bridge.png)
 
 Exemple de connexion de VMs un VLAN avec interconnexion de l'hyperviseur en mode trunk :
-![Connexion VLAN](../medias/cours/proxmox/reseau-vlan.png)
+![Connexion VLAN](../../medias/cours/proxmox/reseau-vlan.png)
 
 Exemple de connexion directe de VMs avec interconnexion de l'hyperviseur en LACP 
-![connexion LACP](../medias/cours/proxmox/reseau-lcap.png)
+![connexion LACP](../../medias/cours/proxmox/reseau-lcap.png)
 
 Lors de la combinaison des différents éléments, n'oubliez pas de renseigner les ports esclaves pour les bonds, les ports du pont pour les bridges, et les périphériques support pour les vlans!
