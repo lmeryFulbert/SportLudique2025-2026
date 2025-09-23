@@ -22,5 +22,5 @@ Exemple de connexion de VMs un VLAN avec interconnexion de l'hyperviseur en mode
 ![Connexion VLAN](../medias/cours/proxmox/reseau-vlan.png)
 
 Exemple de connexion directe de VMs avec interconnexion de l'hyperviseur en LACP 
-![connexion LACP](../medias/cours/proxmox/reseau-lacp.png)
+![connexion LACP](../medias/cours/proxmox/reseau-lcap.png)
 
