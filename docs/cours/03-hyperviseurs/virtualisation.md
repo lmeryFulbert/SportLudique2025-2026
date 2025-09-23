@@ -1,4 +1,4 @@
-# 03-Virtualisation
+# Virtualisation
 
 ## Type d'hyperviseurs
 
@@ -14,7 +14,7 @@ Les hyperviseurs sont des logiciels qui permettent de créer et de gérer des ma
 
 4. **Utilisation** : Les hyperviseurs de type 1 sont généralement utilisés dans des environnements de production, où la virtualisation est une composante essentielle de l'infrastructure.
 
-![](../medias/cours/virtualisation/hyperviseur-type-1-et-2.png)
+![](../../medias/cours/virtualisation/hyperviseur-type-1-et-2.png)
 
 ### Hyperviseur de Type 2 (Hosted) :
 
@@ -30,7 +30,7 @@ Les hyperviseurs sont des logiciels qui permettent de créer et de gérer des ma
 
 En résumé, la principale différence entre les hyperviseurs de type 1 et de type 2 réside dans leur relation avec le matériel. Les hyperviseurs de type 1 s'exécutent directement sur le matériel, tandis que les hyperviseurs de type 2 s'exécutent au-dessus d'un système d'exploitation hôte. Le choix entre les deux dépend des besoins spécifiques de virtualisation et des performances de votre environnement.
 
-![](../medias/cours/virtualisation/telecharger-virtualbox-11.jpg)
+![](../../medias/cours/virtualisation/telecharger-virtualbox-11.jpg)
 
 
 ## Définition de l’hyperconvergence
