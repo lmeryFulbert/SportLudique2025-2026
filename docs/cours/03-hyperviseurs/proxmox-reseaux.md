@@ -7,15 +7,22 @@ Dans un hyperviseur, tous les éléments réseau se trouvant "derrière" la cart
 Il existe 3 principaux types d'éléments réseau très utiles dans Proxmox :
 
 - Linux **Brige** : un switch virtuel pouvant acheminer des VLAN (en mode trunk).
-- Linux **VLAN** : un switch virtuel dédié à un VLAN mettant à disposition des interfaces en mode access.
+- Linux **VLAN** : une interface virtuelle mettant à disposition un VLAN en mode access pour le serveur Proxmox.
 - Linux **Bond** : une aggrégation d'interfaces physiques gérant plusieurs protocoles (notamment LACP).
 
 Pour gérer les différents éléments réseaux de Proxmox, il suffit de cliquer sur le noeud en question dans l'interface web, puis d'aller dans l'item "Système" => "Réseau".
 
 
+
+Il existe également la possibilité de déployer des réseaux distribués virtuels (**SDN** ou Software Defined Networking) connecter des VMs en access à différents VLANs.
+Pour cela, il est nécessaire de créer une **zone de type VLAN**, et d'y attacher des **VNets** (réseaux virtuels) correspondant chacun à un VLAN. Il ne restera plus qu'à connecter les interfaces des VM directements aux bons VNets.
+
+La gestion des réseaux virtuels distribués est réalisée en cliquant sur le centre de données puis en allant dans l'item "SDN" => "Zones" pour les zones, ou "SDN" => VNets pour les réseaux virtuels.
+
+
 ## Combinaisons d'éléments
 
-Dans proxmox, il est possible de combiner ces différents éléments en les cascadant pour parvenir la solution recherchée. Ainsi, connecter un "Linux VLAN" sur un "Linux Bridge" permettra de connecter des machines virtuelles directement dans le VLAN voulu en access, en affectant l'une de ses carte réseau au "Linux VLAN" créé.
+Dans proxmox, il est possible de combiner ces différents éléments en les cascadant pour parvenir la solution recherchée. Vous trouverez quelques exemples ci-dessous.
 
 Exemple de connexion directe de VMs au réseau de l'hyperviseur :
 ![Connexion directe](../../medias/cours/proxmox/reseau-bridge.png)
