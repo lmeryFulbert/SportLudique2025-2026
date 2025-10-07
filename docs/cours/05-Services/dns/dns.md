@@ -137,7 +137,7 @@ Dans cet exemple, les utilisateurs provenant du réseau local (172.16.x.0/24) ve
             recursion yes;  
 
             //Liste des réseaux autorisés à interoger le resolver
-            //Par defaut seul les équipements du meme réseau IP que le serveur peuvent l'interroger.
+            //Par defaut seul les équipements du meme réseau IP que le serveur peuvent l\'interroger.
             allow-query { 
                 172.16.x.0/24;       //LAN
                 127.0.0.1;          //LOCALHOST
@@ -147,7 +147,7 @@ Dans cet exemple, les utilisateurs provenant du réseau local (172.16.x.0/24) ve
             //Desactivation de DNSSec
             dnssec-validation no;
 
-            //Ecoute sur l'ensemble des interfaces IPv4
+            //Ecoute sur l\'ensemble des interfaces IPv4
             listen-on { any; };
     };
 ```
