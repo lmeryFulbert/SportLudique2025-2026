@@ -1,4 +1,4 @@
-# Fiche 08 -- Filtrage applicatif
+# Fiche 08 -- Filtrage applicatif - Proxy web HTTP(s)
 
 La mise en place d'une politique de filtrage, permet à l'administrateur
 de définir les règles qui permettront d'autoriser ou de bloquer des flux
