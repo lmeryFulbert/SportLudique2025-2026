@@ -48,7 +48,7 @@ Un protocole sécurisé fonctionne sur un port différent de son homologue non s
 |--------|------|-------|----------------------|
 | http   | 80   | https | 443                  |
 | ftp    | 21   | ftps  | 990                  |
-| fmap   | 143  | imaps | 993                  |
+| imap   | 143  | imaps | 993                  |
 | smtp   | 25   | smtps | 465 (obsolète), 587  |
 | pop    | 110  | pops  | 995                  |
 
