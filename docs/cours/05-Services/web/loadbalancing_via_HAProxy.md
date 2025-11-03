@@ -1,4 +1,4 @@
-# 10 - LoadBalacing avec HA Proxy
+# 03 - LoadBalacing avec HA Proxy
 
 ## Introduction
 
