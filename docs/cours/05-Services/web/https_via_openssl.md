@@ -23,7 +23,7 @@ protocoles applicatifs classiques de gérer l'implémentation de la couche
 de sécurité associée en respectant le protocole TLS.
 
 ![TLS Protocol in Network
-Model](../medias/cours/openssl/image1.png)
+Model](../../../medias/cours/openssl/image1.png)
 
 Lorsque la communication est effectuée via cette couche de transport
 chiffrée, un « s » est ajouté au nom du protocole : *http* devient
@@ -40,7 +40,7 @@ confiance** : L'autorité de certification que l'on peut assimiler à un
 notaire lors d'une transaction immobilière. Il est garant de la
 vérification de l'identité des vendeurs (mais aussi des acheteurs).
 
-![](../medias/cours/openssl/image2.png)
+![](../../../medias/cours/openssl/image2.png)
 
 Un protocole sécurisé fonctionne sur un port différent de son homologue non sécurisé.
 
@@ -184,7 +184,7 @@ certificats reconnus comme de confiance par les navigateurs. Cela rend
 les attaques de **phishing** plus performantes.
 
 ![Le typosquatting, c\'est quoi ? \| DBM
-Technologies](../medias/cours/openssl/image3.png)
+Technologies](../../../medias/cours/openssl/image3.png)
 
 Le fameux cadenas vert du navigateur a d'ailleurs disparu pour cette
 raison, le cadenas n'est pas le signe que l'on peut faire confiance au
@@ -233,7 +233,7 @@ désormais.
 
 1.  Taper openssl version pour vérifier
 
-![](../medias/cours/openssl/image4.png)
+![](../../../medias/cours/openssl/image4.png)
 
 A noter : Nous ne disposons pas de la toute dernière version (1.1.1i de
 décembre 2020) mais cela suffira pour notre TP.
@@ -304,7 +304,7 @@ demandez pas de détail, c'est de l'expertise mathématique très avancée.
 
 Source : <https://www.keylength.com/fr/5/>
 
-![](../medias/cours/openssl/image5.png)
+![](../../../medias/cours/openssl/image5.png)
 
 ### Génération de la clé privée du serveur web
 
@@ -383,7 +383,7 @@ openssl req -in siteweb/requests_certificats/demande.csr -noout -text
 !!! danger "Important"
     Verifier la présence des champs Subject Alternatives Names
 
-![](../medias/cours/openssl/SAN.png)
+![](../../../medias/cours/openssl/SAN.png)
 
 ## Création du certificat de l'autorité de certification
 
@@ -471,7 +471,7 @@ Le certificat signé par l'autorité de certification est le fichier
     openssl x509 -in siteweb/certificats/siteweb.crt -noout -text
 ```
 
-![](../medias/cours/openssl/image6.png)
+![](../../../medias/cours/openssl/image6.png)
 
 !!! danger "Atttention"
     La copie d'écran ci dessus ne montre pas les champs SAN pourtant nécessaire avec la RFC 2018
@@ -534,9 +534,9 @@ cat file1.crt file2.key > file3.pem
 
 ## Consultation du site web avec chrome 
 
-![](../medias/cours/openssl/image7.png) 
+![](../../../medias/cours/openssl/image7.png) 
 
-![](../medias/cours/openssl/image8.png)
+![](../../../medias/cours/openssl/image8.png)
 
 L'avertissement des navigateurs est normal puisque l'autorité de
 certification qui a délivré le certificat au propriétaire du site n'est
@@ -549,21 +549,21 @@ confiance.
 Dans le monde réel ce problème n'existe pas puisqu'on utilise une
 autorité de confiance.
 
-![](../medias/cours/openssl/image9.png)
+![](../../../medias/cours/openssl/image9.png)
 
-![](../medias/cours/openssl/image10.png)
+![](../../../medias/cours/openssl/image10.png)
 
-![](../medias/cours/openssl/image11.png)
+![](../../../medias/cours/openssl/image11.png)
 
-![](../medias/cours/openssl/image12.png)
+![](../../../medias/cours/openssl/image12.png)
 
-![](../medias/cours/openssl/image13.png)
+![](../../../medias/cours/openssl/image13.png)
 
 ## Exemple de faux certificats forgé
 
-![](../medias/cours/openssl/facebook-fake.png)
+![](../../../medias/cours/openssl/facebook-fake.png)
 
-![](../medias/cours/openssl/certificats-fake.png)
+![](../../../medias/cours/openssl/certificats-fake.png)
 
 !!! danger "Remarque"
     Prenez bien en compte la présence du champ **Subject Alernative Names** nommé en français **Noms alternatifs du sujet** dans Firefox.

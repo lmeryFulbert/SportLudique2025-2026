@@ -12,13 +12,13 @@ Je ferai le test avec 2 serveurs web apache, en montrant les configurations néc
 
 ## Configuration globale
 
-![](../medias/cours/haproxy/vcenter_haute_dispo.jpg)
+![](../../../medias/cours/haproxy/vcenter_haute_dispo.jpg)
 
-![](../medias/cours/haproxy/schema_infra.jpg)
+![](../../../medias/cours/haproxy/schema_infra.jpg)
 
 ## Configuration des serveurs DNS
 
-![](../medias/cours/haproxy/dns_load_balancing.jpg)
+![](../../../medias/cours/haproxy/dns_load_balancing.jpg)
 
 
 -   Les deux serveurs sont enregistrés avec leurs IP respectives.
@@ -43,7 +43,7 @@ echo "<h3>Client d orgigine: ".$_SERVER['HTTP_X_FORWARDED_FOR']."</h3>";
 
 ```
 
-N’oubliez pas d’activer le site web avec la commande a2ensite  à partir du fichier /etc/apache2/sites-avaibles/app.conf
+N’oubliez pas d’activer le site web avec la commande a2ensite  à partir du fichier ````/etc/apache2/sites-avaibles/app.conf````
 
 ### Sur srv-http2
 
@@ -87,9 +87,9 @@ listen cluster 0.0.0.0:80
 
 On oublie pas de redémarrer le service
 
-![](../medias/cours/haproxy/capture_srv1.jpg)
+![](../../../medias/cours/haproxy/capture_srv1.jpg)
 
-![](../medias/cours/haproxy/capture_srv2.jpg)
+![](../../../medias/cours/haproxy/capture_srv2.jpg)
 
 ## Configuration du load Balancing d’une appli en https
 
@@ -97,7 +97,7 @@ Idem pour les serveurs web, rien à modifier
 
 Il faut créer un tunnel entre le Client et le répartiteur de charge (haproxy), les serveurs web n’ont donc pas à être configurés avec TLS.
 
-![](../medias/cours/haproxy/tunneltls.jpg)
+![](../../../medias/cours/haproxy/tunneltls.jpg)
 
 Il faut évidement un certificat valide pour le nom de domaine concerné, j’ai rapidement créé un certificat auto-signé.
 
@@ -143,12 +143,12 @@ backend appmerytest_http_backend
 	server srv-http2 10.251.0.202:80 check
 ```
 
-![](../medias/cours/haproxy/Capture_https_serv1.jpg)
+![](../../../medias/cours/haproxy/Capture_https_serv1.jpg)
 
-![](../medias/cours/haproxy/Capture_https-srv2.jpg)
+![](../../../medias/cours/haproxy/Capture_https-srv2.jpg)
 
 
-![](../medias/cours/haproxy/detail_certificat.jpg)
+![](../../../medias/cours/haproxy/detail_certificat.jpg)
 
 ## Configuration du Load Balabncing de plusieurs applis en http et https
 
@@ -188,6 +188,6 @@ backend appmerytest_http_backend
 
 Il y a ici deux expositions en FrontEnd avec chacune leurs certificats. La redirection se fait sur le même cluster de serveurs web (backend)
 
-![](../medias/cours/haproxy/Capture_https_app2_srv1.jpg)
+![](../../../medias/cours/haproxy/Capture_https_app2_srv1.jpg)
 
-![](../medias/cours/haproxy/Capture_https_app2_srv2.jpg)
+![](../../../medias/cours/haproxy/Capture_https_app2_srv2.jpg)
