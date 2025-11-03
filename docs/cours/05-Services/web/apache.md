@@ -82,14 +82,14 @@ Donc ````a2dissite````, fait un ````rm```` du lien symbolique
 
 !!! danger "Important"
     Vérifier le status du service: 
-    ````sudo systemctl status apache2````,
+    ````sudo systemctl status apache2````,<br/>
     Pour les logs:
     ````${APACHE_LOG_DIR} --> /var/log/apache2/   (sous debian)````,
 
 ## Les erreurs classiques
 
-- Modifier 000-default.conf au lieu de créer un vrai fichier : NON.
-- Oublier le ServerName : Apache ne sait pas quel site servir.
+- Modifier ````000-default.conf```` au lieu de créer un vrai fichier : NON.
+- Oublier le ````ServerName```` : Apache ne sait pas quel site servir.
 - Ne pas recharger Apache : les modifs ne sont pas prises en compte.
 - Oublier d’ajouter l'enregistrement DNS correspondant sur le serveur d'autorité (ou à minima configurer le fichier host pour faire pointer le FQDN vers la bonne adresse IP).
 
