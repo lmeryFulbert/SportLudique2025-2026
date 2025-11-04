@@ -15,6 +15,10 @@ pour l’apprentissage et la connectivité au domaine **lan.sio.lyceefulbert.fr*
 
 ![switch HP](../medias/infrastructure/huawei.png)
 
+### Schéma general
+
+![switch HP](../medias/infrastructure/infra_sisr.drawio.png)
+
 ### Etape préalable pour travailler sur le contexte SportLudique
 
 Le VLAN 200 est le VLAN Labo pour toute la promotion des deuxièmes
