@@ -28,6 +28,8 @@ Nous allons utiliser Nginx comme reverse proxy principal, car il est plus perfor
 
 Plus tard, cette architecture évoluera naturellement vers l’utilisation de container ````Docker````, qui permettra d’isoler chaque application (et sa version de PHP) dans un conteneur dédié, tout en restant accessible via le même reverse proxy Nginx.
 
+![](../../../medias/cours/reverse/reverse-proxy.drawio.png)
+
 ### Installation de Nginx (si ce n'est pas déjà fait) :
 
 ```bash
