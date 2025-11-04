@@ -289,8 +289,8 @@ N'oubliez pas d'enregistrer votre fichier
 │   ├── certificats
 │   └── keys
 └── siteweb
-├── certificats
-├── keys
+│   ├── certificats
+│   └── keys
 └── requests_certificats
 ```
 
