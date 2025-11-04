@@ -532,6 +532,11 @@ cat file1.crt file2.key > file3.pem
 
 19. Accepter le certificat et afficher ses informations
 
+## Diagramme de sequence d'une connexion HTTPS
+
+![](../../../medias/cours/openssl/HTTPS-message-sequence-diagram-with-detailed-TLS-handshaking-steps.png) 
+
+
 ## Consultation du site web avec chrome 
 
 ![](../../../medias/cours/openssl/image7.png) 
