@@ -284,7 +284,7 @@ On sécurise en :
 - filtrant les ports côté firewall (TCP/53).
 
 ??? info "Attention"
-        Une ````clé TSIG```` est un mécanisme défini par la ````RFC 2845```` permettant d’authentifier de façon sécurisée certaines opérations DNS sensibles. Contrairement au transfert de zone, qui consiste à copier une zone du serveur maître vers un serveur esclave, mon utilisation n’avait rien à voir avec cela : dans mon cas, j’ai utilisé TSIG pour autoriser des mises à jour DNS dynamiques, telles que définies dans la ````RFC 2136````. Ce mécanisme permet à un client — ici Certbot — d’ajouter automatiquement un enregistrement TXT dans la zone DNS lors du challenge DNS-01 décrit par la ````RFC 8555 (protocole ACME)````. Cela prouve à Let’s Encrypt que je suis bien propriétaire du domaine, et permet d’automatiser le renouvellement de notre certificat ````wildcard````.
+    Une `clé TSIG` est un mécanisme défini par la `RFC 2845` permettant d’authentifier de façon sécurisée certaines opérations DNS sensibles. Contrairement au transfert de zone, qui consiste à copier une zone du serveur maître vers un serveur esclave, mon utilisation n’avait rien à voir avec cela : dans mon cas, j’ai utilisé TSIG pour autoriser des mises à jour DNS dynamiques, telles que définies dans la `RFC 2136`. Ce mécanisme permet à un client — ici Certbot — d’ajouter automatiquement un enregistrement TXT dans la zone DNS lors du challenge DNS-01 décrit par la `RFC 8555 (protocole ACME)`. Cela prouve à Let’s Encrypt que je suis bien propriétaire du domaine, et permet d’automatiser le renouvellement de notre certificat `wildcard`.
 
 ### Résilience globale
 
@@ -304,7 +304,7 @@ L’ANSSI recommande de disposer d’au moins deux serveurs DNS sur des infrastr
 
 Cette architecture garantit que le service DNS reste accessible même en cas de défaillance d’un fournisseur, d’un routeur ou d’une infrastructure de virtualisation, répondant ainsi aux bonnes pratiques de sécurité et de disponibilité recommandées par l’ANSSI.
 
-### Schema de l'infra redondante
+### Schema de l'infra DNS redondante
 
 ![](.../../../../../medias/cours/dns/redondance_dns.drawio.png)
 
