@@ -25,25 +25,25 @@ la zone signe les réponses et le client vérifie la signature.
 
 ## POrincipe du hash (intégrité) et de l'authentification (verifié avec clé publique de l'emetteur)
 
-Hash :
+### Verification de `l'intégrité` :
 
-La zone DNS prend chaque enregistrement et calcule un résumé unique appelé hash.
+1. La zone DNS prend chaque enregistrement et calcule un résumé unique appelé hash.
 
-Ce hash est une empreinte numérique : même si un seul bit change, le hash change complètement.
+2. Ce hash est une empreinte numérique : même si un seul bit change, le hash change complètement.
 
-Signature :
+### Verification de `l'authentification de l'emmetteur` :
 
-La zone utilise sa clé privée pour signer ce hash.
+3. La zone utilise sa clé privée pour signer ce hash.
 
-Le résultat est la signature (RRSIG) attachée à l’enregistrement.
+4. Le résultat est la signature (RRSIG) attachée à l’enregistrement.
 
-Vérification côté client :
+### Vérification côté client des signatures :
 
-Le client récupère l’enregistrement et sa signature.
+5. Le client récupère l’enregistrement et sa signature.
 
-Il calcule lui-même le hash de l’enregistrement.
+6. Il calcule lui-même le hash de l’enregistrement.
 
-Il utilise la clé publique (contenu dans la zone interrogée via l'enregistrement DNSSEC) pour vérifier la signature et obtenir le hash original.
+7. Il utilise la clé publique (contenu dans la zone interrogée via l'enregistrement DNSSEC) pour vérifier la signature et obtenir le hash original.
 
 Si les deux hash correspondent --> la réponse est authentique.
 
