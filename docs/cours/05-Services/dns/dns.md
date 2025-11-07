@@ -56,6 +56,7 @@ ns1     IN      A       203.0.113.40
 
 ; Enregistrements IPv4 des serveurs web
 @      IN      A      203.0.113.10
+; le @ remplace la zone DNS, tres utile pour acceder au site web sans le www, on en reparlera avec le Subject Alternative Name des certificats pour TLS
 www    IN      A      203.0.113.10
 
 ; Enregistrements IPv4 du serveur de messagerie
