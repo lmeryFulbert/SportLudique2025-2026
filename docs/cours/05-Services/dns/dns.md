@@ -47,16 +47,22 @@ $TTL 3600
                   604800     ; Intervalle d'expiration
                   86400 )    ; Durée minimale de cache
 
-@      IN      NS     ns1.exemple.com.
-@      IN      NS     ns2.exemple.com.
+;choisir une des 2 syntaxes avec le @ ou en recopiant le domaine (avec le point à la fin)
+;@      IN      NS     ns1.exemple.com.
+exemple.com.        IN      NS      ns1.exemple.com.
 
-; Enregistrements IPv4
+; Serveur DNS primaire
+ns1     IN      A       203.0.113.40
+
+; Enregistrements IPv4 des serveurs web
 @      IN      A      203.0.113.10
-www    IN      A      203.0.113.20
+www    IN      A      203.0.113.10
+
+; Enregistrements IPv4 du serveur de messagerie
 mail   IN      A      203.0.113.30
 
 ; Délégation du sous-domaine à un autre serveur DNS
-sousdomaine.exemple.com.  IN  NS  ns.serveurdns.externe.com.
+sousdomaine.exemple.com.  IN  NS  ns.sousdomaine.exemple.com.
 ```
 
 **Notez que dans cet exemple, nous utilisons l'enregistrement NS `ns.serveurdns.externe.com` pour déléguer la gestion du sous-domaine `sousdomaine.exemple.com` à un serveur DNS externe. Vous devez remplacer `ns.serveurdns.externe.com` par le nom de domaine complet du serveur DNS externe qui gérera le sous-domaine.**
@@ -71,20 +77,20 @@ sousdomaine.exemple.com.  IN  NS  ns.serveurdns.externe.com.
 ; Configuration sur le serveur DNS externe
 $TTL 3600
 
-@      IN      SOA    ns.serveurdns.externe.com. admin.serveurdns.externe.com. (
+@      IN      SOA    ns.sousdomaine.exemple.com. admin.sousdomaine.exemple.com. (
                   2023091301 ; Numéro de série
                   3600       ; Intervalle de rafraîchissement
                   1800       ; Intervalle de réessai
                   604800     ; Intervalle d'expiration
                   86400 )    ; Durée minimale de cache
 
-@      IN      NS     ns.serveurdns.externe.com.
+@      IN      NS     ns.sousdomaine.exemple.com.
 sousdomaine IN      A      203.0.113.100  ; Adresse IP du serveur pour sousdomaine.exemple.com
 ```
 
 3. Assurez-vous que le serveur DNS externe est configuré pour répondre aux requêtes DNS pour le sous-domaine `sousdomaine.exemple.com` et qu'il pointe correctement vers l'adresse IP `203.0.113.100`.
 
-De cette manière, la gestion du sous-domaine `sousdomaine.exemple.com` est déléguée au serveur DNS externe `ns.serveurdns.externe.com`, et ce dernier est responsable de la résolution DNS pour ce sous-domaine. Le serveur BIND gère toujours la zone principale pour `exemple.com`.
+De cette manière, la gestion du sous-domaine `sousdomaine.exemple.com` est déléguée au serveur DNS externe `ns.sousdomaine.exemple.com.`, et ce dernier est responsable de la résolution DNS pour ce sous-domaine. Le serveur BIND gère toujours la zone principale pour `exemple.com`.
 
 ## Division des Zones (Privées et Publiques)
 
@@ -122,7 +128,7 @@ view "externe" {
 };
 ```
 
-Dans cet exemple, les utilisateurs provenant du réseau local (172.16.x.0/24) verront une vue DNS définie par le fichier /etc/bind/db.interne, tandis que les utilisateurs externes verront une vue définie par le fichier /etc/bind/db.externe.
+Dans cet exemple, les utilisateurs provenant du réseau local (172.16.x.0/24) verront une vue DNS définie par le fichier ````/etc/bind/db.interne````, tandis que les utilisateurs externes verront une vue définie par le fichier ````/etc/bind/db.externe````.
 
 ## Exemple de configuration
 
@@ -234,7 +240,7 @@ Pour assurer la tolérance aux pannes, on met en place un serveur secondaire (ou
 - augmente la disponibilité globale du service ;
 - permet une eventuelle répartition de la charge (load balancing simple).
 
-## Syncronisation avec le Transfert de Zone
+### Syncronisation avec le Transfert de Zone
 
 Pour que le secondaire dispose d’une copie fidèle du fichier de zone, le DNS utilise un mécanisme automatique : le transfert de zone (zone transfer).
 
@@ -256,7 +262,7 @@ Ce mécanisme réduit :
 - la charge réseau,
 - les temps de synchronisation.
 
-### Rôle du Serial Number
+#### Rôle du Serial Number
 
 Chaque fichier de zone contient un champ Serial dans l’enregistrement SOA.
 Il indique la version de la zone.
@@ -266,7 +272,7 @@ Le secondaire compare :
 
 Si celui du primaire est supérieur, le secondaire déclenche un transfert IXFR (incrementiel) si possible, sinon AXFR (complet).
 
-#### Securisation du transfert de zone
+### Securisation du transfert de zone
 
 Un point essentiel : ne jamais laisser le transfert de zone ouvert à tout le monde.
 Sinon, n’importe qui pourrait télécharger l’intégralité de la zone (ce qui serait un risque de sécurité).
@@ -302,7 +308,7 @@ Cette architecture garantit que le service DNS reste accessible même en cas de 
 
 ![](.../../../../../medias/cours/dns/redondance_dns.drawio.png)
 
-### Contenu du fichier de zone en prenant en compte cette resilience
+#### Contenu du fichier de zone en prenant en compte cette resilience
 
 ````bash
 ; La durée de vie des enregistrements est de 12 heures. Les serveurs DNS récursifs
@@ -326,9 +332,9 @@ ns1.<ville>.sportludique.fr. IN A 183.44.x.y  ;IPPubFAI1
 ns2.<ville>.sportludique.fr. IN A 221.87.x.y   ;IPPubFAI2
 ````
 
-## Activer le transfert de zone vers un serveur identifié
+#### Activer le transfert de zone vers un serveur identifié
 
-### Sur le serveur primaire (Master)
+##### Sur le serveur primaire (Master)
 
 ````bash
 zone "<ville>.sportludique.fr" {
@@ -339,7 +345,7 @@ zone "<ville>.sportludique.fr" {
 };
 ````
 
-### Sur le serveur secondaire (Slave)
+##### Sur le serveur secondaire (Slave)
 
 C’est ici qu'on actives réellement le transfert de zone : Il doit aller chercher la zone auprès du maître.
 
