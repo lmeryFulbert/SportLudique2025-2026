@@ -284,8 +284,10 @@ On sécurise en :
 - utilisant des clés TSIG pour authentifier le transfert ;
 - filtrant les ports côté firewall (TCP/53).
 
-??? info "Attention"
-    Une `clé TSIG` est un mécanisme défini par la `RFC 2845` permettant d’authentifier de façon sécurisée certaines opérations DNS sensibles. Contrairement au transfert de zone, qui consiste à copier une zone du serveur maître vers un serveur esclave, mon utilisation n’avait rien à voir avec cela : dans mon cas, j’ai utilisé TSIG pour autoriser des mises à jour DNS dynamiques, telles que définies dans la `RFC 2136`. Ce mécanisme permet à un client — ici Certbot — d’ajouter automatiquement un enregistrement TXT dans la zone DNS lors du challenge DNS-01 décrit par la `RFC 8555 (protocole ACME)`. Cela prouve à Let’s Encrypt que je suis bien propriétaire du domaine, et permet d’automatiser le renouvellement de notre certificat `wildcard`.
+??? info "clé TSIG"
+    Une `clé TSIG` est un mécanisme défini par la `RFC 2845` permettant d’authentifier de façon sécurisée certaines opérations DNS sensibles. Contrairement au transfert de zone, qui consiste à copier une zone du serveur maître vers un serveur esclave, mon utilisation n’avait rien à voir avec cela : <br/>dans mon cas, j’ai utilisé TSIG pour autoriser des mises à jour DNS dynamiques, telles que définies dans la `RFC 2136`. Ce mécanisme permet à un client ( Certbot ) d’ajouter automatiquement un enregistrement TXT dans la zone DNS lors du challenge DNS-01 décrit par la `RFC 8555 (protocole ACME)`.<br>
+    Cela prouve à Let’s Encrypt que je suis bien propriétaire du domaine, et permet d’automatiser le renouvellement de notre certificat `wildcard`.
+    <br>Cela depasse un peu le cadre du BTS SIO.
 
 ### Résilience globale
 
