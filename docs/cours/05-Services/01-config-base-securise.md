@@ -151,6 +151,13 @@ Differents outils d'administration:
 - MMC distante (DNS, ADDS, DHCP, etc.)
 - Windows Admin Center
 
+![](.../../../../medias/cours/administration/wac-architecture.jpg)
+
+Dans l'idéal on passera par un Bastion d'administration qui servira de Passerelle applicative.
+Les postes des administrateurs (sous windows) peuvent disposer de l'application Windows Admin Center pour gérer les serveurs.
+
+![](.../../../../medias/cours/administration/wac-type-of-installation.jpg)
+
 ### Principe fondamental : 1 serveur = 1 rôle
 
 - Serveur ADDS → uniquement contrôleur de domaine + Service DNS (Exception pour ADDC + DNS car Un contrôleur de domaine Windows doit héberger DNS pour que le domaine fonctionne correctement.)
