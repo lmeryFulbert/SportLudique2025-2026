@@ -1,4 +1,4 @@
-# 02- Resolveur DNS
+# 02.1- Resolveur DNS
 
 Un résolveur DNS est un logiciel ou un service responsable de la résolution des noms de domaine en adresses IP. Les résolveurs sont généralement utilisés par les appareils clients pour interroger le système DNS et obtenir les adresses IP associées aux noms de domaine.
 

@@ -11,7 +11,7 @@
 - Configurer le resolver DNS dans `/etc/resolv.conf`
 - Bien vérifier si le resolver n'est pas géré par `Network Manager`
 - Indiquer un Resolver principal et un de secours.
-- Verification avec `nslookup` ou `dig` (paquet ``ns-utils`)
+- Verification avec `nslookup` ou `dig` (paquet `dns-utils`)
 
 ### Configuration de l'horloge (Synchronisation avec NTP)
 
@@ -71,18 +71,18 @@ Un `SIEM (Security Information and Event Management)` est une plateforme central
 Son objectif principal est de détecter rapidement les incidents de sécurité.
 
 Il permet:
-- Centraliser tous les logs au même endroit
-- Détecter des comportements suspects (ex : brute force, exfiltration)
-- Générer des alertes en temps réel
-- Conserver les journaux pour l’analyse forensique
-- Faciliter les obligations légales (RGPD, conformité)
+  - Centraliser tous les logs au même endroit
+  - Détecter des comportements suspects (ex : brute force, exfiltration)
+  - Générer des alertes en temps réel
+  - Conserver les journaux pour l’analyse forensique
+  - Faciliter les obligations légales (RGPD, conformité)
 
 Exemple:
-- Wazuh
-- Splunk
-- ELK / OpenSearch SIEM
-- Microsoft Sentinel
-- Graylog avec extensions de sécurité
+  - Wazuh
+  - Splunk
+  - ELK / OpenSearch SIEM
+  - Microsoft Sentinel
+  - Graylog avec extensions de sécurité
 
 Sans SIEM, chaque machine a ses logs isolés, ce qui rend quasi impossible la détection d’une attaque coordonnée.
 Un SIEM permet de voir l’activité globale du système d’information.

@@ -1,4 +1,4 @@
-# Resolver Unbound
+# 02.2 - Resolver Unbound
 
 Unbound est un résolveur DNS récursif rapide et sécurisé développé par l'organisation NLnet Labs. Il est principalement utilisé pour répondre aux requêtes DNS de manière récursive tout en assurant la confidentialité, l'intégrité, et la validation des réponses à l'aide de DNSSEC (Domain Name System Security Extensions).
 
