@@ -111,6 +111,15 @@ Beaucoup de solutions appliquent par défaut :
 - 4 backups hebdomadaires (1 / semaine)
 - 12 backups mensuels (1 / mois)
 
+### Configuration pour un serveur de Supervision
+
+- Activer SNMP si nécessaire (serveur devant rester hautement disponible)
+- Utiliser SNMPv3 avec mot de passe fort et chiffrement (pas de communauté public si pas d'utilisation de la version 3)
+- Limiter l’accès à un serveur de supervision ou VLAN dédié (management ou monitoring)
+- Configurer des traps ou alertes pour les événements critiques
+- Journaliser toutes les requêtes SNMP pour audit si possible
+
+
 ## Serveurs Windows
 
 La configuration d’un serveur Windows demande une attention particulière, notamment lorsqu’il est destiné à rejoindre un domaine Active Directory ou à héberger des rôles critiques.
