@@ -116,7 +116,7 @@ Beaucoup de solutions appliquent par défaut :
 La configuration d’un serveur Windows demande une attention particulière, notamment lorsqu’il est destiné à rejoindre un domaine Active Directory ou à héberger des rôles critiques.
 Voici les bonnes pratiques essentielles.
 
-### Bonne pratique
+### Bonnes pratiques
 
 Il est impératif de choisir le nom définitif du serveur avant son ajout au domaine Active Directory.
 
@@ -175,6 +175,7 @@ RDP / GUI uniquement depuis le réseau d’administration dédié.
 Tous les événements liés à la PKI doivent être journalisés et centralisés.
 
 - Activer la journalisation détaillée via Event Viewer / Security / ADCS :
+
   -  Demandes de certificat
   -  Délivrances
   -  Révocations
@@ -187,6 +188,7 @@ Tous les événements liés à la PKI doivent être journalisés et centralisés
 Conserver au moins 3 versions historiques des bases de certificats et clés privées.
 
 Suivre la politique 3-2-1 de l'ANSSI :
+
   - 3 copies
   - 2 supports différents
   - 1 copie hors site
