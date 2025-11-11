@@ -94,16 +94,16 @@ Un SIEM permet de voir l’activité globale du système d’information.
 - Conserver au moins l'ancienne versions d'une config (revenir à l'état anterieur fonctionnel).
 - Dans l'ideal versionner avec git (`etckeeper`) `/etc/` et pousser sur un serveur de confiance (un gitlab interne par exemple)
 - Faire des backup
-    VEAM pour des VM
-    rsync + cron
+    - VEAM pour des VM
+    - rsync + cron pour seulement des fichiers.
 
 Sécuriser l’accès à la sauvegarde :
 
-- Auth forte
-- Réseau isolé (Managaement deconnecté d'internet)
+- Authentification
+- Réseau isolé (Management deconnecté d'internet)
 - Horodatage et immuabilité si possible
 
-règle classique “7 daily backups” utilisée par de nombreux systèmes
+Règle classique “7 daily backups” utilisée par de nombreux systèmes
 
 Beaucoup de solutions appliquent par défaut :
 
@@ -164,9 +164,9 @@ Une PKI interne (Autorité de Certification Windows) doit être protégée comme
 La moindre compromission peut mettre en péril toute la confiance interne.
 Journalisation de tous les evennement obligatoire.
 
-Si possible, utiliser une CA racine hors ligne : clé privée totalement déconnectée du réseau.
+Si possible, utiliser une CA racine (root) hors ligne : clé privée totalement déconnectée du réseau. Toute la chaine de confiance reposera sur cette Autorité.
 
-Les CA subordonnées peuvent être en ligne pour délivrer les certificats aux serveurs et utilisateurs.
+Les CA deleguées peuvent être en ligne pour délivrer les certificats aux serveurs et utilisateurs.
 
 Limiter l’accès réseau aux seules machines d’administration autorisées.
 
@@ -181,14 +181,12 @@ Tous les événements liés à la PKI doivent être journalisés et centralisés
   -  Modifications de templates
   -  Accès aux clés privées
 
-Envoyer ces logs vers un SIEM pour corrélation et alerting.
+- Envoyer ces logs vers un SIEM pour corrélation et alerting.
+- Faire des backups et test de restauration regulierement
 
-Faire des backups et test de restauration regulierement
-
-Test régulier des restaurations de la PKI à partir des backups.
 Conserver au moins 3 versions historiques des bases de certificats et clés privées.
 
-Suivre la politique 3-2-1 :
-- 3 copies
-- 2 supports différents
-- 1 copie hors site
+Suivre la politique 3-2-1 de l'ANSSI :
+  - 3 copies
+  - 2 supports différents
+  - 1 copie hors site
