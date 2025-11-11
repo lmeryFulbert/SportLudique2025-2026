@@ -54,6 +54,7 @@ Fichier : `/etc/ssh/sshd_config`
 
 - Activer et configurer rsyslog (défaut).
 - Conserver les logs suffisants :
+
   -  /var/log/auth.log
   -  /var/log/syslog
   -  /var/log/kern.log
