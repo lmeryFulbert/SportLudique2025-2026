@@ -120,13 +120,13 @@ Voici les bonnes pratiques essentielles.
 
 Il est impératif de choisir le nom définitif du serveur avant son ajout au domaine Active Directory.
 
-Renommer une machine déjà membre du domaine peut provoquer :
-
-- des erreurs Kerberos
-- des objets dupliqués dans l’AD
-- des problèmes DNS et SPN
-- un dysfonctionnement des rôles ADDS liés
-- Cela oblige souvent à retirer et réintégrer le serveur au domaine.
+!!! Danger "Attention"
+    Renommer une machine déjà membre du domaine peut provoquer :<br/>
+    - des erreurs Kerberos <br/>
+    - des objets dupliqués dans l’AD<br/>
+    - des problèmes DNS et SPN<br/>
+    - un dysfonctionnement des rôles ADDS liés<br/>
+    - Cela oblige souvent à retirer et réintégrer le serveur au domaine.<br/>
 
 RDP uniquement pour les administrateurs
 - Jamais exposé à Internet
