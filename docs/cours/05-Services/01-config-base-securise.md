@@ -149,24 +149,52 @@ Les éditions Windows Server Core sont allégées :
 - moins de failles potentielles
 - moins de mises à jour
 - moins de ressources utilisées
-- Administration à distance facilitée (PowerShell, RSAT, WinRM)
+- Administration à distance facilitée (PowerShell, WinRM)
 
 N'installer le bureau que si necessaire, privilegier les version Core et management avec une machine dédié à l'administration se connectant aux différents serveurs windows (outil RSAT ).
 
 Differents outils d'administration:
 
 - PowerShell Remoting (WinRM)
-- Console Server Manager distante
-- RSAT (Remote Server Administration Tools)
-- MMC distante (DNS, ADDS, DHCP, etc.)
 - Windows Admin Center
 
 ![](.../../../../medias/cours/administration/wac-architecture.jpg)
+
+!!! Danger "Attention"
+    Attention WindowsAdmin Center est pensé pour travailler dans un domaine:<br/>
+    L'ajout d'une machine se fait pas son nom complet (pas par son IP), cela peut être déroutant<br/>
+    La machine servant de Passerelle Windows Admin Center doit être attaché au domaine, en Worgroup il faut autoriser explicitement les hôtes cibles? </br> 
+    Par ailleurs Windows Admin Center ne fonctionne qu'avec un navigateur basé sur Chromium (le mieux est d'utiliser Edge de Microsoft) <br/>
+
+Exemple de commande en worgroup (pour des test)
+
+````PowerShell
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value "srv-test.local" -Force
+Get-Item WSMan:\localhost\Client\TrustedHosts
+
+ou un
+
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value "*" -Force
+````
+
+Le dernière ligne autoriser n'importe quelle machine (pratique risquée)
 
 Dans l'idéal on passera par un Bastion d'administration qui servira de Passerelle applicative.
 Les postes des administrateurs (sous windows) peuvent disposer de l'application Windows Admin Center pour gérer les serveurs.
 
 ![](.../../../../medias/cours/administration/wac-type-of-installation.jpg)
+
+!!! Danger "Attention"
+    Il faut penser à installer les extensions pour certaines fonctionnalités (déroutant)<br/>
+
+![](.../../../../medias/cours/administration/Windows-Core.png)
+
+![](.../../../../medias/cours/administration/Windows-admin-Center.png)
+
+![](.../../../../medias/cours/administration/dashboardWAC.png)
+
+![](.../../../../medias/cours/administration/extensionWAC.png)
+
 
 ### Principe fondamental : 1 serveur = 1 rôle
 
