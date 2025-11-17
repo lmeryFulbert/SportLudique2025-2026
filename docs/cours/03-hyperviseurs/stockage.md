@@ -21,7 +21,7 @@ D'abord conçu pour les PC grand publique, SATA a été intégré dans les serve
 Le SAS est dédié aux serveur, il a une vitesse maximum théorique de 12 Gb/s (1.2Go /s en pratique).
 La **fiabilité** des support utilisant le SAS est très élevée, expliquant le **coût** du SAS généralement **plus élevé** que le SATA.
 
-![connecteur disque SAS](../medias/cours/stockage/sas.png)
+![connecteur disque SAS](../../medias/cours/stockage/sas.png)
 
 ### NVMe (PCIe)
 La norme NVMe a été conçue pour accéder au stockage directement à travers le bus PCI Express. Cela permet un **temps d'accès beaucoup plus faible** et des **débits beaucoup plus élevés** : le débit maximum peut monter jusqu'à 14 Go/s sur 4 lignes PCIe 5.0 . En contrepartie, ces disque sont **les plus onéreux**.
