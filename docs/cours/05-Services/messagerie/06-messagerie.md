@@ -14,6 +14,13 @@ Cet enregistrement associe l'adresse IP 203.0.113.1 au nom de domaine mail.examp
 
 Ces enregistrements, présents dans la zone DNS du domaine, permettent au courrier électronique d'être correctement dirigé vers le serveur de messagerie associé au domaine cible.
 
+
+![messagerie](../../../medias/cours/messagerie/messagerie.png)
+
+ -  Le **MTA (Mail Transfert Agent)** est un serveur de messagerie (Postfix)
+ -  Le **MDA (Mail Delivery Agent)** est le processus par lequel le mail est stockée dans la boite aux lettre de l'utilisateur. (
+ -  Le **MUA (Mail User Agent)** est le logiciel de messagerie installé sur les postes clients permettant de récuperer les mails (Thunderbird, outlook)
+
 ## Protocoles de Messagerie
 
 ### SMTP (Simple Mail Transfer Protocol)
