@@ -48,8 +48,26 @@ Historiquement, des outils comme `syslog-ng` ou `rsyslog` ont été utilisés po
 
 Graylog est une plateforme open source conçue pour simplifier la collecte, le stockage, l’analyse et la visualisation des logs, tout en offrant une interface utilisateur moderne et intuitive. Contrairement aux solutions traditionnelles comme syslog-ng, Graylog propose une expérience utilisateur complète, accessible même aux équipes non techniques, sans sacrifier la puissance ni la flexibilité.
 
-### Fonctionnalités clés
+![architecture graylog](../../../medias/cours/graylog/graylog-architecture.png)
 
+**MongoDB:**
+
+MongoDB est utilisé par Graylog pour stocker les informations de configuration, les utilisateurs, les rôles, les dashboards, les alertes, les règles de traitement des logs, etc. Pas les logs eux-mêmes (ce rôle revient à Elasticsearch). 
+MongoDB est une base de données NoSQL, idéale pour des données semi-structurées comme les métadonnées.
+Rapide pour les lectures/écritures de petites quantités de données (parfait pour la configuration).
+
+
+**ElasticSearch:**
+Elasticsearch est le moteur de recherche et d’analyse qui stocke tous les logs collectés par Graylog. Il permet :
+
+- L’indexation des logs pour une recherche ultra-rapide.
+- La recherche full-text (recherche dans le contenu des logs).
+- L’analyse (agrégations, visualisations, alertes basées sur des motifs).
+- La rétention des logs (selon les politiques de conservation).
+
+Conçu pour gérer des volumes massifs de données (des milliards de logs). Le Moteur est optimisé pour les requêtes complexes et les analyses en temps réel contrairement à un moteur de base de données SQL classique.
+
+### Fonctionnalités clés
 
 - **Interface web ergonomique** :
 Graylog offre un tableau de bord personnalisable, des outils de recherche avancée et des visualisations claires. Plus besoin de fouiller dans des fichiers texte ou de maîtriser des commandes complexes : tout est accessible via une interface graphique.
