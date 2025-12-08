@@ -68,3 +68,7 @@ Les analystes utilisent Graylog pour l’analyse des logs et Wazuh pour la déte
 | **Segmentation**      | ACL strictes pour limiter les flux entrants/sortants du VLAN de management.  |
 | **Sauvegardes**       | Logs sauvegardés dans un emplacement isolé et chiffré.                       |
 | **Haute disponibilité** | Déploiement en cluster pour éviter les points de défaillance uniques.        |
+
+## Rappel architecture souhaitée
+
+![architecture SOC](../../../medias/cours/graylog/graylog.drawio.png)

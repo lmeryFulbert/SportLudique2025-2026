@@ -105,3 +105,14 @@ Graylog s’appuie sur Elasticsearch pour le stockage et la recherche, ce qui lu
 Graylog est compatible avec de nombreux protocoles (Syslog, GELF, Beats, Kafka) et s’intègre facilement avec des outils de monitoring (Prometheus, Grafana) ou de sécurité (SIEM).
 
 
+# Proposition d'implémentation
+
+![architecture SOC](../../../medias/cours/graylog/graylog.drawio.png)
+
+L'ensemble des logs seront envoyé via:
+- rsyslog (par défaut) ou syslog-ng (à installer) sur les machines linux.
+- NXLogs ou Syslog Windows Agent pour les machines windows.
+
+Il faudra en plus installer l'agent du SIEM et autoriser les communication bidirectionnelles vers le réseau gérant le SOC.
+
+Je vous conseille l'installation du SIEM via un container Docker dédié pour faciliter les montées de version (évolution très rapide)
