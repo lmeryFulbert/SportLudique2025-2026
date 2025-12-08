@@ -58,7 +58,18 @@ Exemple : Un administrateur peut filtrer les logs par niveau de sévérité, par
 
 - **Parsing et structuration des logs** :
 Grâce à des outils intégré Graylog permet de transformer des logs bruts en données structurées et exploitables.
-Exemple : Un log Apache brut (192.168.1.1 - - [10/Oct/2023:13:55:36 +0200] "GET /index.html HTTP/1.1" 200 2326) peut être découpé en champs distincts : client_ip, timestamp, http_method, status_code, etc.
+
+Exemple : Un log Apache brut 
+````bash
+(192.168.1.1 - - [10/Oct/2023:13:55:36 +0200] "GET /index.html HTTP/1.1" 200 2326)
+````
+peut être découpé en champs distincts : 
+
+    - client_ip, 
+    - timestamp, 
+    - http_method, 
+    - status_code, 
+    - etc.
 
 
 - **Alerting et notifications** :
