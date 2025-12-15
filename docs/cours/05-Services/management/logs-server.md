@@ -151,8 +151,23 @@ La documentation precise qu'un espace de stockage dédié avec le système de fi
 ![input graylog](../../../medias/cours/graylog/input-graylog.png)
 
 ![graylog-tcp](../../../medias/cours/graylog/graylog-port.png)
+
+`::ffff:172.16.10.155` signifie qu’un client IPv4 (172.16.10.155) est vu via un socket IPv6 : c’est du dual-stack, l’IPv4 étant encapsulée dans une adresse IPv6.
+
 ![graylog-udp](../../../medias/cours/graylog/graylog-port-udp.png)
+
+Graylog ouvre plusieurs listeners (écoute 3 fois sur le même port UDP) pour :
+- gérer plus de débit
+- éviter les blocages
+ -paralléliser la réception des logs
+
 ![datanode-ports](../../../medias/cours/graylog/datanode-ports.png)
+
+- 9200 permet de parler à OpenSearch (requêtes, index, stats).
+- 9300 sert aux serveurs OpenSearch (cluster datanodes) pour se parler entre eux.
+- 8999 est le port de contrôle entre Graylog et ses Data Nodes.
+
+
 
 
 # Proposition d'implémentation
