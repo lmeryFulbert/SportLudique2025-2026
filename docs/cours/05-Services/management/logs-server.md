@@ -134,12 +134,25 @@ Ne stocke jamais les logs eux-mêmes
 - Gestion de la rétention (suppression automatique des anciens logs)
 
 OpenSearch est un fork d’Elasticsearch (suite au changement de licence).
+La documentation precise qu'un espace de stockage dédié avec le système de fichier `XFS` est recommandé.
+
+??? info "système de fichier XFS"
+    Très performant avec de gros volumes de données<br/>
+    Excellente gestion des fichiers volumineux (logs, bases, VM)<br/>
+    Allocation dynamique → moins de fragmentation<br/>
+    Scalabilité élevée (pensé pour serveurs et stockage pro)<br/>
+    Croissance à chaud du système de fichiers (resize sans arrêt)<br/>
+    Très adapté aux usages logs / OpenSearch / Graylog<br/>
 
 
-![architecture SOC](../../../medias/cours/graylog/graylog-infra.drawio.png)
+![infra graylog](../../../medias/cours/graylog/graylog-infra2.drawio.png)
 
 
-![architecture SOC](../../../medias/cours/graylog/input-graylog.png)
+![input graylog](../../../medias/cours/graylog/input-graylog.png)
+
+![graylog-tcp](../../../medias/cours/graylog/graylog-port.png)
+![graylog-udp](../../../medias/cours/graylog/graylog-port-udp.png)
+![datanode-ports](../../../medias/cours/graylog/datanode-ports.png)
 
 
 # Proposition d'implémentation
