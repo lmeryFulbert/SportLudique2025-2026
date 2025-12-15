@@ -104,6 +104,43 @@ Graylog s’appuie sur Elasticsearch pour le stockage et la recherche, ce qui lu
 - **Intégrations multiples**:
 Graylog est compatible avec de nombreux protocoles (Syslog, GELF, Beats, Kafka) et s’intègre facilement avec des outils de monitoring (Prometheus, Grafana) ou de sécurité (SIEM).
 
+# Stack de Graylog
+
+Graylog repose sur 2 serveurs:
+  - graylog-server : le front et l'appli gérant le dashboard
+  - graylog-datanodes : le back gérant le stockage avec le moteur opensearch (fork de Elastic)
+
+## Graylog-server
+
+- Interface web (dashboards, recherches, alertes) 
+- Réception des logs (GELF, Syslog, Beats, etc.)
+- Parsing, normalisation et enrichissement des logs
+- Gestion des utilisateurs, rôles et permissions
+
+### Service Mongodb
+
+  - Stocke :
+    - utilisateurs
+    - dashboards
+    - configurations
+
+Ne stocke jamais les logs eux-mêmes
+
+## Graylog-datanode
+
+- Contient le moteur OpenSearch
+- Indexation et stockage des logs
+- Recherche rapide (full-text, filtres, agrégations)
+- Gestion de la rétention (suppression automatique des anciens logs)
+
+OpenSearch est un fork d’Elasticsearch (suite au changement de licence).
+
+
+![architecture SOC](../../../medias/cours/graylog/graylog-infra.drawio.png)
+
+
+![architecture SOC](../../../medias/cours/graylog/input-graylog.png)
+
 
 # Proposition d'implémentation
 
