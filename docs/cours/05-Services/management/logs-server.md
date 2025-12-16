@@ -171,20 +171,20 @@ La documentation Graylog recommande l’utilisation d’un espace de stockage d�
 
 ![input graylog](../../../medias/cours/graylog/input-graylog.png)
 
-![graylog-tcp](../../../medias/cours/graylog/graylog-port.png)
 
-```bash
+```console
 admin@graylog:~$ ss -ltn
 State         Recv-Q        Send-Q                         Local Address:Port                  Peer Address:Port
 LISTEN        0             128                                  w.x.y.z:22                         0.0.0.0:*
 LISTEN        0             4096                         192.168.10.100:27017                      0.0.0.0:*
 LISTEN        0             4096                [::ffff:192.168.10.100]:9000                             *:*
-````
+```
 
 `::ffff:192.168.10.100` signifie qu’un client IPv4 (192.168.10.100) est vu via un socket IPv6 : c’est du dual-stack, l’IPv4 étant encapsulée dans une adresse IPv6.
 
 
-````bash
+```console
+
 admin@graylog:~$ ss -lun
 State        Recv-Q       Send-Q                                Local Address:Port              Peer Address:Port
 UNCONN       0            0                                                 *:514                          *:*
@@ -196,21 +196,22 @@ UNCONN       0            0                                                 *:12
 UNCONN       0            0                                                 *:12201                        *:*
 UNCONN       0            0                                                 *:12201                        *:*
 
-````
+```
 
 Graylog ouvre plusieurs listeners (écoute 4 fois sur le même port UDP) pour :
-- gérer plus de débit
-- éviter les blocages
-- paralléliser la réception des logs
 
-````bash
+ - gérer plus de débit
+ - éviter les blocages
+ - paralléliser la réception des logs
+
+```console
 admin@datanode-01:~$ ss -ltn
 State           Recv-Q          Send-Q                   Local Address:Port                   Peer Address:Port
 LISTEN          0               128                            w.x.y.z:22                          0.0.0.0:*
 LISTEN          0               4096                                 *:9300                              *:*
 LISTEN          0               4096                                 *:8999                              *:*
 LISTEN          0               4096                                 *:9200                              *:*
-````
+```
 
 - 9200 permet de parler à `OpenSearch` (requêtes, index, stats).
 - 9300 sert aux serveurs `OpenSearch` (cluster datanodes) pour se parler entre eux.

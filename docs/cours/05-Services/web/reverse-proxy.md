@@ -195,3 +195,51 @@ Dans le scénario de configuration qci dessus, les certificats SSL/TLS sont gén
 Le trafic chiffré SSL/TLS entre les clients et Nginx s'arrête au niveau du serveur Nginx, et la communication entre Nginx et les serveurs d'origine peut être non chiffrée (HTTP) ou chiffrée séparément (par exemple, si les serveurs d'origine prennent en charge HTTPS et ont leurs propres certificats).
 
 Assurez-vous que le trafic entre Nginx et les serveurs d'origine est sécurisé en fonction de vos exigences de sécurité. Si nécessaire, vous pouvez activer HTTPS entre Nginx et les serveurs d'origine, mais cela impliquera la configuration de certificats sur ces serveurs d'origine également. Dans de nombreux cas, cette couche de chiffrement supplémentaire n'est pas nécessaire si le réseau interne est considéré comme sécurisé.
+
+## Gestion des Headers (administration avancée)
+
+Les **headers HTTP** permettent au serveur de **donner des instructions au navigateur** pour améliorer la sécurité ou le comportement du site.  
+Ils ne remplacent **pas un code sécurisé**, mais limitent l’impact des failles existantes.
+
+### Principaux Headers
+
+| Header | Objectif |
+|--------|----------|
+| **Strict-Transport-Security (HSTS)** | Force le navigateur à utiliser HTTPS, protège contre les attaques MITM |
+| **Content-Security-Policy (CSP)** | Limite l’exécution de JS/CSS/images provenant de sources non autorisées |
+| **X-Content-Type-Options: nosniff** | Empêche le navigateur de deviner le type MIME d’un fichier |
+| **X-Frame-Options** | Protège contre le clickjacking (inclusion du site dans un iframe) |
+| **Referrer-Policy** | Contrôle quelles informations sont envoyées dans l’en-tête Referer |
+| **Permissions-Policy** | Limite l’accès à la caméra, micro, géolocalisation. Correspond aux autorisations d'une app sous Android |
+
+Ces headers permettent de **passer proprement les scans de sécurité** (SecurityHeaders.com, Mozilla Observatory).
+
+### Headers complémentaires (app modernes)
+
+| Header | Rôle |
+|--------|-----|
+| Cross-Origin-Embedder-Policy (COEP) | Bloque le chargement de ressources non sécurisées cross-origin |
+| Cross-Origin-Resource-Policy (CORP) | Définit qui peut accéder aux ressources |
+| Cross-Origin-Opener-Policy (COOP) | Sépare les fenêtres / onglets pour éviter certaines attaques |
+
+## Configurations des Headers
+
+- Créer un fichier global pour tous les vhosts : `/etc/nginx/security-headers.conf`
+- Exemple minimaliste et sûr :
+
+```nginx
+add_header Strict-Transport-Security "max-age=63072000; includeSubDomains" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header X-Frame-Options "SAMEORIGIN" always;
+add_header Content-Security-Policy "default-src 'self' https:;" always;
+```
+
+- Inclure ce fichier dans chaque vhost HTTPS :
+
+```nginx
+include /etc/nginx/security-headers.conf;
+```
+
+- CSP permissive : permet aux CDN et API externes de continuer à fonctionner
+
+Les headers HTTP ne corrigent pas les failles du code, mais réduisent leur impact et permettent aux scanners et audits de passer proprement.
