@@ -106,35 +106,56 @@ Graylog est compatible avec de nombreux protocoles (Syslog, GELF, Beats, Kafka) 
 
 # Stack de Graylog
 
-Graylog repose sur 2 serveurs:
-  - graylog-server : le front et l'appli gérant le dashboard
-  - graylog-datanodes : le back gérant le stockage avec le moteur opensearch (fork de Elastic)
+Graylog repose sur une architecture modulaire, séparant clairement les fonctions de présentation, de traitement et de stockage des logs.
+
+Graylog repose sur à minima 2 serveurs:
+
+  - `graylog-server` : le front et l'appli gérant le dashboard
+  - `graylog-datanodes` : le back gérant le stockage avec le moteur opensearch (fork de Elastic)
 
 ## Graylog-server
+
+Le Graylog Server constitue le point d’entrée de la plateforme.
+Il fournit l’interface d’administration accessible aux utilisateurs habilités et assure le traitement des journaux avant leur stockage.
+
+Il est responsable de :
 
 - Interface web (dashboards, recherches, alertes) 
 - Réception des logs (GELF, Syslog, Beats, etc.)
 - Parsing, normalisation et enrichissement des logs
 - Gestion des utilisateurs, rôles et permissions
 
+Le Graylog Server ne stocke pas les logs de manière persistante.
+Sur ce noeud on y installe generallement le service MongoDB.
+
 ### Service Mongodb
 
-  - Stocke :
-    - utilisateurs
-    - dashboards
-    - configurations
+MongoDB est utilisé comme base de données de configuration.
 
-Ne stocke jamais les logs eux-mêmes
+Il stocke notamment :
+
+  - les utilisateurs et leurs rôles,
+  - les tableaux de bord,
+  - les streams, alertes et paramètres de la plateforme.
+
+Les logs eux-mêmes ne sont jamais stockés dans MongoDB.
 
 ## Graylog-datanode
 
-- Contient le moteur OpenSearch
-- Indexation et stockage des logs
-- Recherche rapide (full-text, filtres, agrégations)
-- Gestion de la rétention (suppression automatique des anciens logs)
+Le Graylog Data Node est dédié au stockage et à l’indexation des journaux.
 
-OpenSearch est un fork d’Elasticsearch (suite au changement de licence).
-La documentation precise qu'un espace de stockage dédié avec le système de fichier `XFS` est recommandé.
+Il embarque le moteur `OpenSearch`, qui assure :
+
+  - l’indexation des logs,
+  - le stockage des données,
+  - les recherches rapides (full-text, filtres, agrégations),
+  - la gestion de la rétention (suppression automatique des anciens logs).
+
+ 
+??? info "OpenSearch"
+    OpenSearch est un fork d’Elasticsearch, né suite au changement de licence de ce dernier.
+
+La documentation Graylog recommande l’utilisation d’un espace de stockage dédié, formaté avec le système de fichiers `XFS`, particulièrement adapté aux charges d’écriture intensives générées par les logs.
 
 ??? info "système de fichier XFS"
     Très performant avec de gros volumes de données<br/>
@@ -152,23 +173,48 @@ La documentation precise qu'un espace de stockage dédié avec le système de fi
 
 ![graylog-tcp](../../../medias/cours/graylog/graylog-port.png)
 
-`::ffff:172.16.10.155` signifie qu’un client IPv4 (172.16.10.155) est vu via un socket IPv6 : c’est du dual-stack, l’IPv4 étant encapsulée dans une adresse IPv6.
+```bash
+admin@graylog:~$ ss -ltn
+State         Recv-Q        Send-Q                         Local Address:Port                  Peer Address:Port
+LISTEN        0             128                                  w.x.y.z:22                         0.0.0.0:*
+LISTEN        0             4096                         192.168.10.100:27017                      0.0.0.0:*
+LISTEN        0             4096                [::ffff:192.168.10.100]:9000                             *:*
+````
 
-![graylog-udp](../../../medias/cours/graylog/graylog-port-udp.png)
+`::ffff:192.168.10.100` signifie qu’un client IPv4 (192.168.10.100) est vu via un socket IPv6 : c’est du dual-stack, l’IPv4 étant encapsulée dans une adresse IPv6.
 
-Graylog ouvre plusieurs listeners (écoute 3 fois sur le même port UDP) pour :
+
+````bash
+admin@graylog:~$ ss -lun
+State        Recv-Q       Send-Q                                Local Address:Port              Peer Address:Port
+UNCONN       0            0                                                 *:514                          *:*
+UNCONN       0            0                                                 *:514                          *:*
+UNCONN       0            0                                                 *:514                          *:*
+UNCONN       0            0                                                 *:514                          *:*
+UNCONN       0            0                                                 *:12201                        *:*
+UNCONN       0            0                                                 *:12201                        *:*
+UNCONN       0            0                                                 *:12201                        *:*
+UNCONN       0            0                                                 *:12201                        *:*
+
+````
+
+Graylog ouvre plusieurs listeners (écoute 4 fois sur le même port UDP) pour :
 - gérer plus de débit
 - éviter les blocages
- -paralléliser la réception des logs
+- paralléliser la réception des logs
 
-![datanode-ports](../../../medias/cours/graylog/datanode-ports.png)
+````bash
+admin@datanode-01:~$ ss -ltn
+State           Recv-Q          Send-Q                   Local Address:Port                   Peer Address:Port
+LISTEN          0               128                            w.x.y.z:22                          0.0.0.0:*
+LISTEN          0               4096                                 *:9300                              *:*
+LISTEN          0               4096                                 *:8999                              *:*
+LISTEN          0               4096                                 *:9200                              *:*
+````
 
-- 9200 permet de parler à OpenSearch (requêtes, index, stats).
-- 9300 sert aux serveurs OpenSearch (cluster datanodes) pour se parler entre eux.
+- 9200 permet de parler à `OpenSearch` (requêtes, index, stats).
+- 9300 sert aux serveurs `OpenSearch` (cluster datanodes) pour se parler entre eux.
 - 8999 est le port de contrôle entre Graylog et ses Data Nodes.
-
-
-
 
 # Proposition d'implémentation
 
