@@ -1,4 +1,4 @@
-# 13 Portail Captif avec Stormshield
+# Portail Captif avec Stormshield
 
 ## Introduction
 
