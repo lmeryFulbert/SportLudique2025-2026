@@ -3,10 +3,12 @@
 Ce chapitre présente les **principales attaques informatiques**, classées selon les **couches du modèle OSI**, de la plus basse (physique) à la plus haute (applicative).
 
 Cette liste est **non exhaustive** :  
+
 - Les techniques d’attaque évoluent constamment  
 - De nouvelles vulnérabilités apparaissent régulièrement  
 
 L’objectif est de :
+
 - Comprendre les **mécanismes généraux des attaques**
 - Associer chaque attaque à des **contre-mesures adaptées**
 - Donner une **culture cybersécurité** commune aux étudiants
@@ -19,16 +21,69 @@ L’objectif est de :
 **Traduction :** Attaque par accès physique
 
 **Principe :**
-Accès non autorisé à un équipement (serveur, switch, poste client).
+
+Une attaque par accès physique consiste pour un individu malveillant à accéder physiquement à un équipement informatique afin de :
+
+- Voler des données
+- Installer un dispositif malveillant
+- Contourner les mécanismes de sécurité logiques
+- Obtenir un accès réseau non autorisé
+
+!!! important "A retenir"
+    Contrairement aux attaques réseau, ici l’attaquant est physiquement présent dans les locaux.
+
+Beaucoup d’infrastructures sont très sécurisées logiquement (ACL, firewall, VLAN, MFA…),
+mais deviennent vulnérables si quelqu’un peut :
+
+- Brancher un PC sur une prise réseau
+- Démarrer un serveur sur une clé USB
+- Accéder directement aux disques durs
+- Se connecter sur un port console
+
+!!! important "A retenir"
+    “Si un attaquant a un accès physique, il a presque gagné.”
 
 **Exemples :**
+
+- Un individu branche son ordinateur portable sur une prise RJ45 libre.
 - Vol de disque dur
 - Branchement d’un périphérique USB malveillant
+- accès au port console d'un switch ( line console et mode enable non protégé par mot de passe)
+- Laisser une session ouverte sur une station sans surveillance.
 
 **Contre-mesures :**
-- Contrôle d’accès physique
-- Baies fermées
-- Désactivation du boot USB
+
+- Contrôle d’accès physique de la salle des serveurs :
+    - Baies fermées
+    - Vidéo surveillance
+    - Registre des entrées / sorties
+
+- Sécurisation des ports physique
+    - Ne jamais utiliser le vlan 1 (par défaut)
+    - Créer un VLAN HoneyPot (ex: VLAN 999)
+    - Sécuriser les ports console si les switchs sont accessibles physiquement
+    - Mettre les ports inutilisés dans ce VLAN
+    - Désactiver les ports inutilisés
+    - Mettre en place un Vlan "Invité ou Guest"
+    - Mettre une authentification 802.1X (voir chapitre dédié) pour accéder à un port
+    - Activer le Port Security (Cisco) en limiter les Macs autorisées sur un port
+
+Exemple n'autorisant qu'une seule Mac sur l'interface fa0/1
+```bash
+interface fa0/1
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security violation shutdown
+```
+
+- Sécurisation des stations de travail
+    - Désactivation du boot USB dans le BIOS
+    - Mot de passe BIOS
+    - BitLocker activé (Chiffrement des données)
+    - GPO pour bloquer les périphériques USB
+    - Désactivation de l’automount
+
 
 ---
 
@@ -41,24 +96,63 @@ Accès non autorisé à un équipement (serveur, switch, poste client).
 L’attaquant se fait passer pour la passerelle afin d’intercepter le trafic réseau local.
 
 **Conséquences :**
+
 - Man‑In‑The‑Middle local
 - Interception d’identifiants (confidentialité)
 - Modification du trafic (intégrité)
 - Déni de service local (Disponibilité)
 
 **Contre-mesures :**
-- Switchs managés
-  - Dynamic ARP Inspection (DAI)
-  - DHCP Snooping
+
+- Switchs manageable (éviter les switchs grand public du commerce)
+- DHCP Snooping (permet au switch de bloquer les serveurs DHCP non autorisés afin d’empêcher une attaque de type **DHCP Spoofing** (faux serveur DHCP).)
 - VLAN : Segmentation du réseau
 - VLAN isolés / Private VLAN
     - Empêche la communication directe entre postes d’un même VLAN
- - Port Security
-   - Limitation du nombre d’adresses MAC par port
-- Filtrage ARP statique (réseaux très restreints)
+- Port Security:  Limitation du nombre d’adresses MAC par port
+- Filtrage ARP statique (réseaux très restreints): vlan de niveau 2
 
-L’ARP spoofing est une attaque locale :
-la meilleure défense est la segmentation et l’isolation réseau, pas uniquement le chiffrement.
+!!! important "A retenir"
+      L’ARP spoofing est une attaque locale :
+      la meilleure défense est la segmentation et l’isolation réseau, pas uniquement le chiffrement.
+
+#### DHCP Snooping
+
+**Traduction :** Surveillance / filtrage DHCP
+
+**Principe :**  
+Le DHCP Snooping permet au switch de bloquer les serveurs DHCP non autorisés  
+afin d’empêcher une attaque de type **DHCP Spoofing** (faux serveur DHCP).
+
+Le switch distingue :
+- Ports **trusted** (serveur DHCP légitime)
+- Ports **untrusted** (postes clients)
+
+Seuls les ports "trusted" peuvent envoyer des réponses DHCP.
+
+**Fonctionnement :**
+
+  1. Le switch intercepte les messages DHCP.
+  2. Il autorise uniquement les réponses venant d’un port marqué "trusted".
+  3. Il construit une base de données IP ↔ MAC ↔ Port (binding table).
+
+Exemple de configuration
+
+```bash
+ip dhcp snooping
+ip dhcp snooping vlan 10,20,30  # id Vlans ou se trouvent les clients légitimes
+
+interface g0/1    # le port sur lequel se trouve le serveur DHCP ou le relai DHCP (souvent un port d'interco 802.1Q)
+ip dhcp snooping trust   # autorise a voir des réponses DHCP
+
+interface g0/10   # on limite le nombre de requetes clients DHCP venant sur ce port
+ip dhcp snooping limit rate 10 #Evite les attaques DHCP Starvation
+
+```
+
+!!! important "A retenir"
+    Avec DHCP Snooping, seuls les ports “trusted” peuvent envoyer des réponses DHCP.
+    En cas de relay, le port vers le routeur ou serveur doit être trusted.
 
 ---
 
@@ -69,6 +163,7 @@ la meilleure défense est la segmentation et l’isolation réseau, pas uniqueme
 Inondation du switch avec de fausses adresses MAC pour le forcer à diffuser les trames.
 
 **Contre-mesures :**
+
 - Port Security
 - Limitation du nombre de MAC par port
 
@@ -83,7 +178,8 @@ Inondation du switch avec de fausses adresses MAC pour le forcer à diffuser les
 ### Principe
 L’attaquant envoie un grand nombre de requêtes DHCP avec des **adresses MAC falsifiées** afin d’épuiser le pool d’adresses IP du serveur DHCP.
 
-### Conséquences
+### Conséquences:
+
 - Plus aucune adresse IP disponible
 - Déni de service réseau (DoS)
 - Nouveaux postes incapables de se connecter
@@ -93,6 +189,7 @@ L’attaquant envoie un grand nombre de requêtes DHCP avec des **adresses MAC f
 
 **Principe**
 Après une attaque de starvation, l’attaquant met en place un **faux serveur DHCP** qui fournit :
+
 - une fausse passerelle
 - un faux DNS
 
@@ -147,6 +244,7 @@ L'isolation est donc indispensable pour limiter la surface d'attaque.
 L’attaquant falsifie l’adresse IP source des paquets.
 
 **Contre-mesures :**
+
 - Filtrage anti-spoofing
 - Firewall
 - Segmentation réseau
@@ -158,6 +256,7 @@ L’attaquant falsifie l’adresse IP source des paquets.
 Envoi massif de requêtes ICMP (ping) pour saturer la cible.
 
 **Contre-mesures :**
+
 - Rate limiting
 - Filtrage ICMP
 
@@ -185,6 +284,7 @@ L’attaquant envoie de nombreuses requêtes TCP SYN sans terminer la connexion 
 Envoi massif de paquets UDP vers la cible.
 
 **Contre-mesures :**
+
 - Filtrage
 - Rate limiting
 
