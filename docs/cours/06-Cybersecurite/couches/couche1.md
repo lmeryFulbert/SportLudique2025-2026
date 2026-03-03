@@ -37,23 +37,26 @@ mais deviennent vulnérables si quelqu’un peut :
 
 ### Contre-mesures :
 
-- Contrôle d’accès physique de la salle des serveurs :
-    - Baies fermées
-    - Vidéo surveillance
-    - Registre des entrées / sorties
+#### Contrôle d’accès physique de la salle des serveurs :
 
-- Sécurisation des ports physique
-    - Ne jamais utiliser le vlan 1 (par défaut)
-    - Créer un VLAN HoneyPot (ex: VLAN 999)
-    - Sécuriser les ports console si les switchs sont accessibles physiquement
-    - Mettre les ports inutilisés dans ce VLAN
-    - Désactiver les ports inutilisés
-    - Mettre en place un Vlan "Invité ou Guest"
-    - Mettre une authentification 802.1X (voir chapitre dédié) pour accéder à un port
-    - Activer le Port Security (Cisco) en limiter les Macs autorisées sur un port
+- Baies fermées à clé et dans un local sécurisé
+- Vidéo surveillance
+- Registre des entrées / sorties
 
-Exemple n'autorisant qu'une seule Mac sur l'interface fa0/1
+#### Sécurisation des ports physique
+
+ - Ne jamais utiliser le vlan 1 (par défaut)
+ - Créer un VLAN HoneyPot (ex: VLAN 999) et mettre les ports inutilisés dans ce VLAN
+ - Sécuriser les ports console si les switchs sont accessibles physiquement
+ - Désactiver les ports inutilisés (shutdow)
+ - Mettre en place un Vlan "Invité ou Guest"
+ - Mettre une authentification 802.1X (voir chapitre dédié) pour accéder à un port
+ - Activer le Port Security (Cisco) en limiter les Macs autorisées sur un port
+
+#### Exemple de configuration Port Security (Cisco)
+
 ```bash
+#Exemple n'autorisant qu'une seule Mac sur l'interface fa0/1
 interface fa0/1
 switchport mode access
 switchport port-security
@@ -61,11 +64,9 @@ switchport port-security maximum 1
 switchport port-security violation shutdown
 ```
 
-- Sécurisation des stations de travail
-    - Désactivation du boot USB dans le BIOS
-    - Mot de passe BIOS
-    - BitLocker activé (Chiffrement des données)
-    - GPO pour bloquer les périphériques USB
-    - Désactivation de l’automount
-
-
+#### Sécurisation des stations de travail
+- Désactivation du boot USB dans le BIOS
+- Définir un Mot de passe pour accéder au BIOS
+- BitLocker activé (Chiffrement des données)
+- GPO pour bloquer le montage des volumes via périphériques USB
+- Désactivation de l’auto-mount (Linux) pour les periphériques externes USB

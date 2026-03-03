@@ -7,6 +7,8 @@
 **Principe :**
 L’attaquant se fait passer pour la passerelle afin d’intercepter le trafic réseau local.
 
+![](../../../medias/cours/cyber/ARP-Spoofing-Attack.png)
+
 ### Conséquences :
 
 - Man‑In‑The‑Middle local
@@ -43,12 +45,13 @@ Inondation du switch avec de fausses adresses MAC pour le forcer à diffuser les
 ## Attaques DHCP
 
 ### DHCP Starvation
-**Traduction :** Épuisement du serveur DHCP  
 
-**Couche OSI :** 2 / 3  
+**Traduction :** Saturation du serveur DHCP  
 
 ### Principe
 L’attaquant envoie un grand nombre de requêtes DHCP avec des **adresses MAC falsifiées** afin d’épuiser le pool d’adresses IP du serveur DHCP.
+
+![](../../../medias/cours/cyber/dhcp-starvation.png)
 
 ### Conséquences:
 
@@ -144,3 +147,9 @@ ip dhcp snooping limit rate 10 #Evite les attaques DHCP Starvation
 !!! important "A retenir"
     Avec DHCP Snooping, seuls les ports “trusted” peuvent envoyer des réponses DHCP.
     En cas de relay, le port vers le routeur ou serveur doit être trusted.
+
+## Autres attaques possibles
+
+### MAC Spoofing
+
+Usurper l’adresse MAC d’un autre appareil pour usurper son identité, contourner des règles de contrôle d’accès basé sur l'adresse physique.
