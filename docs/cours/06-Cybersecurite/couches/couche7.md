@@ -24,7 +24,6 @@ Injection de code JavaScript malveillant dans une page web.
 - Encodage des sorties
 - Content-Security-Policy (CSP)
 
-
 ## Cross-Site Request Forgery (CSRF)
 **Traduction :** Falsification de requêtes inter-sites
 

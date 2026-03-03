@@ -1,4 +1,4 @@
-# Couche 6 - Présentation
+# 6. Couche 6 - Présentation
 
 ## SSL Stripping
 
