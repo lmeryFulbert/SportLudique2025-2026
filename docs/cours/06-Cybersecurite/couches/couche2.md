@@ -7,8 +7,6 @@
 **Principe :**
 L’attaquant se fait passer pour la passerelle afin d’intercepter le trafic réseau local.
 
-![](../../../medias/cours/cyber/ARP-Spoofing-Attack.png)
-
 ### Conséquences :
 
 - Man‑In‑The‑Middle local

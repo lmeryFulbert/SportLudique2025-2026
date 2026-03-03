@@ -13,14 +13,21 @@ L’attaquant falsifie l’adresse IP source des paquets.
 - Firewall
 - Segmentation réseau
 
-## ICMP Flood
+## Attaques DDoS - type Flood
 
-**Traduction :** Attaque par saturation ICMP
+**Traduction :** Attaque par saturation
 
-### Principe :
-Envoi massif de requêtes ICMP (ping) pour saturer la cible.
+- ICMP Flood / Ping Flood : inonder une cible de echo requests pour saturer sa bande passante ou ses ressources.
+
+- Smurf Attack : envoyer des requêtes ICMP à une adresse broadcast avec une source spoofée => toutes les machines répondent à la victime, la surchargeant.
 
 ### Contre-mesures :
 
 - Rate limiting
 - Filtrage ICMP
+
+## Attaques Protocole de routage Dynamique
+
+Un attaquant peut générer de faux messages de routage (protocoles de routage comme RIP/OSPF dans des réseaux internes) pour faire passer le trafic par un mauvais chemin, intercepter ou perturber les communications.
+
+
